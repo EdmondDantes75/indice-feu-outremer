@@ -20,20 +20,42 @@ Calcul automatique, deux fois par jour, d'un indice de danger météorologique d
 | `.github/workflows/climatologie.yml` | Seuils locaux recalculés le 2 de chaque mois |
 | `ifo/` | Code Python : stations, lecture GRIB2, calcul FWI, niveaux |
 | `docs/` | Page de carte publiée par GitHub Pages |
-| `docs/data/resume.json` | Fichier léger (≈ 20 Ko) lu par le plugin WordPress |
+| `docs/data/resume.json` | Synthèse légère (≈ 15 Ko) : niveaux par commune et par territoire |
 | `docs/data/latest.json` | Résultats détaillés (composantes, météo, stations) |
 | `docs/data/archives/` | Historique des résumés |
-| `wordpress/indice-feu-outremer/` | Plugin WordPress sans JavaScript |
+| `docs/widgets/` | Images SVG à afficher sur le site (accueil, une par commune), liste `communes.csv` |
 
 Lancer à la main : onglet **Actions** du dépôt, « Calcul de l'indice », **Run workflow** (case « Sonde » pour seulement vérifier l'accès aux fichiers Météo-France).
 
-## Plugin WordPress
+## Affichage sur le site, sans plugin
 
-Copier le dossier `wordpress/indice-feu-outremer` dans `wp-content/plugins/`, puis activer l'extension. Les données sont récupérées en tâche de fond toutes les 30 minutes et gardées dans la base : aucune requête externe ni aucun script n'est ajouté aux pages vues par les visiteurs.
+Chaque calcul produit des images SVG statiques (2 à 6 Ko, aucun script) : `widgets/accueil.svg` pour les 11 territoires et `widgets/commune/<code INSEE>.svg` pour chaque commune. Sur WordPress, un bloc « HTML personnalisé » suffit :
 
-- `[indice_feu_outremer]` : tableau des 11 territoires, aujourd'hui et demain.
-- `[indice_feu_outremer format="compact"]` : liste courte pour la page d'accueil (`jour="1"` pour demain).
-- `[indice_feu_commune insee="98811"]` ou `[indice_feu_commune nom="Koné"]` : trois jours pour une commune. Pour les noms portés par plusieurs communes (Saint-Pierre, Sainte-Anne, Saint-Louis, Saint-Joseph…), ajouter `territoire="Martinique"` ou utiliser le code INSEE.
+```html
+<img src="/indice-feu-outremer/accueil.svg" width="380" height="362" loading="lazy" decoding="async"
+     alt="Indice feu Outre-mer de Météo des Forêts : niveau de chaque territoire aujourd'hui et demain" style="max-width:100%;height:auto">
+```
+
+```html
+<img src="/indice-feu-outremer/commune/98811.svg" width="380" height="132" loading="lazy" decoding="async"
+     alt="Indice feu Outre-mer à Koné : aujourd'hui, demain et après-demain" style="max-width:100%;height:auto">
+```
+
+`widgets/communes.csv` donne pour chaque commune son code INSEE et l'adresse de son image.
+
+**Dossier à la racine du site** (adresses ci-dessus) : le workflow dépose le contenu de `docs/widgets/` dans le dossier `indice-feu-outremer` du site, en SFTP ou FTPS, si ces secrets du dépôt sont renseignés (Settings > Secrets and variables > Actions) :
+
+| Secret | Exemple |
+|---|---|
+| `SITE_HOTE` | `ftp.exemple-hebergeur.net` |
+| `SITE_PROTOCOLE` | `sftp` ou `ftps` |
+| `SITE_UTILISATEUR` | compte FTP limité à ce dossier |
+| `SITE_MOT_DE_PASSE` | mot de passe de ce compte |
+| `SITE_DOSSIER` | chemin du dossier vu par ce compte, par exemple `www/indice-feu-outremer` ou `.` |
+
+Le dossier reçoit aussi un `.htaccess` (Apache) : type `image/svg+xml`, cache de 30 minutes, exécution de scripts refusée.
+
+**Sans dépôt sur le site** : remplacer `/indice-feu-outremer/` par `https://edmonddantes75.github.io/indice-feu-outremer/widgets/` (GitHub Pages activé sur `main` / `docs`).
 
 ## Sources et licences
 

@@ -20,6 +20,7 @@ from .config import DEPS, NIVEAUX, PENALITE_ALT_M_PAR_KM, SEUILS_ABS, TERRITOIRE
 from .datagouv import dataset_resources
 from .models import Arome, Arpege, arome_domain, weather_at_noon
 from . import stations as stmod
+from . import widgets
 
 LOG = logging.getLogger('ifo')
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -259,7 +260,7 @@ def main(argv=None):
     with open(os.path.join(OUT, 'latest.json'), 'w') as f:
         json.dump(full, f, ensure_ascii=False, separators=(',', ':'))
 
-    # fichier minimal pour WordPress : niveaux par commune et synthèse par territoire
+    # fichier minimal : niveaux par commune et synthèse par territoire (source des images) : niveaux par commune et synthèse par territoire
     comm = {i: [u['n'], u['t'], [d[0] if d else None for d in u['d']], [d[1] if d else None for d in u['d']]]
             for i, u in units.items()}
     terr = {}
@@ -276,6 +277,7 @@ def main(argv=None):
     os.makedirs(arch, exist_ok=True)
     with open(os.path.join(arch, now.strftime('%d-%Hh') + '.json'), 'w') as f:
         json.dump(small, f, ensure_ascii=False, separators=(',', ':'))
+    widgets.ecrire(small, os.path.dirname(OUT))
     LOG.info('terminé en %.0f s : %d communes, %d stations', time.time() - t0, len(units), len(ST))
 
 
