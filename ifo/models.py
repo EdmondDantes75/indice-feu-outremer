@@ -183,8 +183,10 @@ class Arome(Model):
         return f'{PNT_BASE}/{r}/arome-om/{self.domain}/0025/{pkg}/arome-om-{self.domain}__0025__{pkg}__{step:03d}H__{r}.grib2'
 
     def available(self, run):
+        # un run est retenu dès que ses 24 premières heures sont publiées ; les échéances manquantes
+        # au-delà sont prises dans le run précédent
         if run not in self._avail:
-            self._avail[run] = exists(self.url(run, self.horizon))
+            self._avail[run] = exists(self.url(run, 24))
         return self._avail[run]
 
     def steps(self, run):
@@ -246,8 +248,18 @@ class Arpege(Model):
         return cat
 
     def available(self, run):
-        files = self.catalog().get(run)
-        return bool(files) and max(f[1] for f in files) >= 60
+        cat = self.catalog()
+        if run not in cat and cat:
+            # data.gouv.fr ne liste que le dernier run : on reconstruit les adresses des runs précédents
+            # à partir des groupes d'échéances du run listé, puis on vérifie leur présence.
+            ref_run = max(cat)
+            ref = ref_run.strftime(ISO)
+            guess = [(s0, s1, u.replace(ref, run.strftime(ISO))) for s0, s1, u in cat[ref_run]]
+            last = max(guess, key=lambda g: g[1])
+            if exists(last[2]):
+                cat[run] = guess
+        files = cat.get(run)
+        return bool(files) and max(f[1] for f in files) >= 48
 
     def file_for(self, run, step):
         for s0, s1, url in sorted(self.catalog().get(run, [])):
@@ -284,36 +296,42 @@ def hours(a, b):
 
 def weather_at_noon(model, runs, noon, point_ix):
     """Température, humidité, vent à midi et pluie des 24 h précédentes pour les points point_ix.
-    runs : runs disponibles du modèle, du plus récent au plus ancien.
-    Retourne (T, H, W, R, run_utilisé) ou None si le modèle ne couvre pas."""
-    best = None
+    runs : runs disponibles du modèle, du plus récent au plus ancien. Si un fichier manque, le run
+    précédent est essayé. Retourne (T, H, W, R, run_utilisé) ou None si le modèle ne couvre pas."""
+    best = T = H = W = None
     for r in runs:
         s = hours(noon, r)
-        if 0 <= s <= model.horizon:
+        if not 0 <= s <= model.horizon:
+            continue
+        T, H, W = (model.sample(r, s, k) for k in 'THW')
+        if T is not None and H is not None and W is not None:
             best = r
             break
     if best is None:
         return None
-    s = hours(noon, best)
-    T, H, W = (model.sample(best, s, k) for k in 'THW')
-    if T is None or H is None or W is None:
-        return None
+
+    def acc(r, step):
+        v = model.sample(r, step, 'P')
+        if v is None:
+            return None
+        return np.asarray(v)[point_ix] if np.ndim(v) else np.full(len(point_ix), float(v))
+
     rain = np.zeros(len(point_ix))
     end = noon
     start = noon - dt.timedelta(hours=24)
     while end > start:
-        seg_run = None
+        done = False
         for r in runs:
-            if r < end and hours(end, r) <= model.horizon:
-                seg_run = r
-                break
-        if seg_run is None:
+            if not (r < end and hours(end, r) <= model.horizon):
+                continue
+            seg_start = max(r, start)
+            a, b = acc(r, hours(end, r)), acc(r, hours(seg_start, r))
+            if a is None or b is None:
+                continue
+            rain = rain + a - b
+            end = seg_start
+            done = True
+            break
+        if not done:
             return None
-        seg_start = max(seg_run, start)
-        a = model.sample(seg_run, hours(end, seg_run), 'P')
-        b = model.sample(seg_run, hours(seg_start, seg_run), 'P')
-        if a is None or b is None:
-            return None
-        rain = rain + (np.asarray(a)[point_ix] if np.ndim(a) else a) - (np.asarray(b)[point_ix] if np.ndim(b) else b)
-        end = seg_start
     return (np.asarray(T)[point_ix], np.asarray(H)[point_ix], np.asarray(W)[point_ix], np.clip(rain, 0, None), best)
