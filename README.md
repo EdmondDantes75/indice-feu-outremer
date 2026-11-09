@@ -53,7 +53,7 @@ Chaque calcul produit des images SVG statiques (2 à 6 Ko, aucun script) : `widg
 | `SITE_MOT_DE_PASSE` | mot de passe de ce compte |
 | `SITE_DOSSIER` | chemin du dossier vu par ce compte, par exemple `www/indice-feu-outremer` ou `.` |
 
-Le dossier reçoit aussi un `.htaccess` (Apache) : type `image/svg+xml`, cache de 30 minutes, exécution de scripts refusée.
+Les fichiers sont écrasés à chaque calcul ; l'image d'une commune retirée de la liste est supprimée (seuls les `.svg` du sous-dossier `commune` peuvent l'être, rien d'autre sur le site). Le dossier reçoit aussi un `.htaccess` (Apache) : type `image/svg+xml`, cache de 30 minutes, exécution de scripts refusée.
 
 **Sans dépôt sur le site** : remplacer `/indice-feu-outremer/` par `https://edmonddantes75.github.io/indice-feu-outremer/widgets/` (GitHub Pages activé sur `main` / `docs`).
 
