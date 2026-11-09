@@ -23,27 +23,20 @@ Calcul automatique, deux fois par jour, d'un indice de danger météorologique d
 | `docs/data/resume.json` | Synthèse légère (≈ 15 Ko) : niveaux par commune et par territoire |
 | `docs/data/latest.json` | Résultats détaillés (composantes, météo, stations) |
 | `docs/data/archives/` | Historique des résumés |
-| `docs/widgets/` | Images SVG à afficher sur le site (accueil, une par commune), liste `communes.csv` |
+| `ifo/widgets.py` | Fabrication des images SVG déposées sur le site |
 
 Lancer à la main : onglet **Actions** du dépôt, « Calcul de l'indice », **Run workflow** (case « Sonde » pour seulement vérifier l'accès aux fichiers Météo-France).
 
 ## Affichage sur le site, sans plugin
 
-Chaque calcul produit des images SVG statiques (2 à 6 Ko, aucun script) : `widgets/accueil.svg` pour les 11 territoires et `widgets/commune/<code INSEE>.svg` pour chaque commune. Sur WordPress, un bloc « HTML personnalisé » suffit :
+Chaque calcul produit des images SVG statiques (aucun script), en deux formats : large pour ordinateur, étroit pour téléphone. Le navigateur choisit le bon format grâce à la balise `<picture>`.
 
-```html
-<img src="/indice-feu-outremer/accueil.svg" width="380" height="362" loading="lazy" decoding="async"
-     alt="Indice feu Outre-mer de Météo des Forêts : niveau de chaque territoire aujourd'hui et demain" style="max-width:100%;height:auto">
-```
+- `accueil.svg` et `accueil-mobile.svg` : carte de chaque île, communes colorées selon le niveau du jour, niveau de l'île aujourd'hui et demain, date locale.
+- `commune/<code INSEE>.svg` et `commune/<code INSEE>-mobile.svg` : carte de l'île avec la commune mise en évidence, trois jours (date, niveau, IFM), conditions prévues à midi (température, humidité, vent, pluie, sécheresse du sol, inflammabilité), station de référence, modèle utilisé, heure du calcul en heure locale.
+- `accueil.html` : code à coller dans un bloc « HTML personnalisé » de la page d'accueil.
+- `communes.csv` : pour chaque commune, son code INSEE et le code HTML prêt à coller.
 
-```html
-<img src="/indice-feu-outremer/commune/98811.svg" width="380" height="132" loading="lazy" decoding="async"
-     alt="Indice feu Outre-mer à Koné : aujourd'hui, demain et après-demain" style="max-width:100%;height:auto">
-```
-
-`widgets/communes.csv` donne pour chaque commune son code INSEE et l'adresse de son image.
-
-**Dossier à la racine du site** (adresses ci-dessus) : le workflow dépose le contenu de `docs/widgets/` dans le dossier `indice-feu-outremer` du site, en SFTP ou FTPS, si ces secrets du dépôt sont renseignés (Settings > Secrets and variables > Actions) :
+Les images sont fabriquées à chaque calcul et déposées dans le dossier `indice-feu-outremer` à la racine du site, en SFTP ou FTPS ; elles ne sont pas conservées dans ce dépôt (seules les données le sont). Secrets du dépôt (Settings > Secrets and variables > Actions) :
 
 | Secret | Exemple |
 |---|---|
@@ -53,9 +46,7 @@ Chaque calcul produit des images SVG statiques (2 à 6 Ko, aucun script) : `widg
 | `SITE_MOT_DE_PASSE` | mot de passe de ce compte |
 | `SITE_DOSSIER` | chemin du dossier vu par ce compte, par exemple `www/indice-feu-outremer` ou `.` |
 
-Les fichiers sont écrasés à chaque calcul ; l'image d'une commune retirée de la liste est supprimée (seuls les `.svg` du sous-dossier `commune` peuvent l'être, rien d'autre sur le site). Le dossier reçoit aussi un `.htaccess` (Apache) : type `image/svg+xml`, cache de 30 minutes, exécution de scripts refusée.
-
-**Sans dépôt sur le site** : remplacer `/indice-feu-outremer/` par `https://edmonddantes75.github.io/indice-feu-outremer/widgets/` (GitHub Pages activé sur `main` / `docs`).
+Les fichiers sont écrasés à chaque calcul ; l'image d'une commune retirée de la liste est supprimée (seuls les `.svg` du sous-dossier `commune` peuvent l'être, rien d'autre sur le site). Le dossier reçoit aussi un `.htaccess` (Apache) : type `image/svg+xml`, compression, cache de 30 minutes, exécution de scripts refusée.
 
 ## Sources et licences
 
