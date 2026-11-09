@@ -1,0 +1,47 @@
+name: Calcul de l'indice
+
+on:
+  schedule:
+    # ≈ 6 h 45 et 16 h 45 à Paris en hiver (7 h 45 et 17 h 45 en été) :
+    # runs AROME de 00 h et 12 h UTC complets, observations de la veille publiées.
+    - cron: '43 5 * * *'
+    - cron: '43 15 * * *'
+  workflow_dispatch:
+    inputs:
+      sonde:
+        description: "Sonde : vérifier l'accès aux fichiers Météo-France sans publier"
+        type: boolean
+        default: false
+
+concurrency:
+  group: indice
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  calcul:
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - name: Dépendances
+        run: pip install -r requirements.txt
+      - name: Tests hors réseau
+        run: python -m pytest -q tests
+      - name: Calcul
+        run: python -m ifo.run ${{ inputs.sonde && '--sonde' || '' }}
+      - name: Publication des résultats
+        if: ${{ !inputs.sonde }}
+        run: |
+          git config user.name "indice-feu-outremer"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data
+          git commit -m "Indice du $(date -u +%Y-%m-%dT%H:%MZ)" || exit 0
+          git pull --rebase
+          git push

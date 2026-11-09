@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Indice feu Outre-mer · Météo des Forêts</title>
+<meta name="description" content="Indice de danger météorologique de feu pour les territoires ultramarins, calculé deux fois par jour par Météo des Forêts à partir des données publiques de Météo-France.">
+<style>
+:root{--bg:#F4F6F2;--surface:#fff;--ink:#13241A;--muted:#58675D;--line:#D8E0D6;--sea:#E4ECEE;--band:#0A2F19;--band-ink:#F2F6F1;--band-muted:#A9C2B1;--accent:#2D6A4F;
+--lv0:#5DB346;--lv1:#FFE066;--lv2:#F59F00;--lv3:#C92A2A;--li0:#0F2A12;--li1:#3A2E00;--li2:#2E1A00;--li3:#fff}
+@media (prefers-color-scheme:dark){:root{--bg:#0E1511;--surface:#16201A;--ink:#E3EBE4;--muted:#9BAAA0;--line:#2B3A31;--sea:#13232A;--band:#06200F;--accent:#7CC59D;color-scheme:dark}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 -apple-system,"Segoe UI",Roboto,sans-serif}
+.w{max-width:1240px;margin:0 auto;padding:0 max(16px,env(safe-area-inset-left))}
+header{background:var(--band);color:var(--band-ink)}header .w{padding-block:22px}
+h1{font:700 clamp(1.6rem,4vw,2.4rem)/1.15 Georgia,serif;margin:0 0 6px}h1 em{color:#9ED9B4}
+.sub{color:var(--band-muted);max-width:70ch;margin:0}.note{margin-top:10px;border:1px solid rgba(255,224,102,.5);border-radius:8px;padding:8px 12px;max-width:900px;font-size:.9rem}
+.bar{position:sticky;top:0;z-index:2;background:var(--bg);border-bottom:1px solid var(--line)}.bar .w{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;padding-block:8px}
+.tabs{display:flex;gap:4px;background:var(--surface);border:1px solid var(--line);border-radius:99px;padding:3px}
+.tabs button{font:inherit;font-size:.85rem;border:0;background:none;color:var(--muted);padding:5px 12px;border-radius:99px;cursor:pointer}
+.tabs button[aria-selected=true]{background:var(--band);color:var(--band-ink);font-weight:600}
+.lg{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:.82rem;color:var(--muted)}.lg i{display:inline-block;width:13px;height:13px;border-radius:3px;margin-right:5px;vertical-align:-2px}
+.upd{font-size:.8rem;color:var(--muted);margin-left:auto}
+main .w{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:16px;padding-block:18px;align-items:start}@media(max-width:960px){main .w{grid-template-columns:minmax(0,1fr)}}
+.board{display:flex;flex-wrap:wrap;gap:12px}.in{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:8px;flex:1 1 auto;min-width:0}
+.in h2{font:600 .95rem/1.2 inherit;margin:0 0 6px;display:flex;justify-content:space-between;gap:8px}.chip{font-size:.7rem;font-weight:700;padding:1px 7px;border-radius:99px}
+.in svg{display:block;width:100%;height:auto;background:var(--sea);border-radius:6px}.z{stroke:var(--surface);stroke-width:.7;cursor:pointer}.z:hover,.z.s{stroke:var(--ink);stroke-width:1.6}
+.base{fill:#C9D2CA}.d{position:sticky;top:56px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px;display:grid;gap:10px}
+.d h3{font:700 1.3rem Georgia,serif;margin:0}.pill{display:inline-block;font-weight:700;border-radius:7px;padding:4px 10px}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:3px 10px;font-size:.85rem;margin:0}.kv dt{color:var(--muted)}.kv dd{margin:0;text-align:right}
+.m{font-size:.8rem;color:var(--muted)}footer .w{padding-block:20px 36px;font-size:.82rem;color:var(--muted)}
+</style>
+</head>
+<body>
+<header><div class="w">
+<h1>Indice feu des <em>Outre-mer</em></h1>
+<p class="sub">Danger météorologique de feu par commune, calculé deux fois par jour avec l'Indice Forêt Météo (système canadien FWI), à partir des observations des stations et des modèles AROME Outre-mer et ARPEGE de Météo-France.</p>
+<p class="note"><b>Indice calculé par Météo des Forêts.</b> Il n'est ni produit ni validé par Météo-France, les préfectures ou les secours, et ne signale pas les feux en cours. Les consignes officielles priment : Prévifeu en Nouvelle-Calédonie, arrêtés préfectoraux ailleurs.</p>
+</div></header>
+<div class="bar"><div class="w">
+<div class="tabs" role="tablist"><button role="tab" data-j="0" aria-selected="true">Aujourd'hui</button><button role="tab" data-j="1" aria-selected="false">Demain</button><button role="tab" data-j="2" aria-selected="false">Après-demain</button></div>
+<div class="lg"><span><i style="background:var(--lv0)"></i>Faible</span><span><i style="background:var(--lv1)"></i>Modéré</span><span><i style="background:var(--lv2)"></i>Élevé</span><span><i style="background:var(--lv3)"></i>Très élevé</span></div>
+<span class="upd" id="upd">Chargement…</span>
+</div></div>
+<main><div class="w"><div class="board" id="board"></div><aside class="d" id="det"><p class="m">Touchez une commune pour voir le détail du calcul.</p></aside></div></main>
+<footer><div class="w">Sources : Météo-France, données climatologiques quotidiennes et modèles AROME Outre-mer et ARPEGE (Licence Ouverte 2.0). Fonds de carte : IGN Admin Express (france-geojson), Natural Earth. Méthode : Van Wagner (1987). Jours en heure locale de chaque territoire. Code et données : <a href="https://github.com/EdmondDantes75/indice-feu-outremer">github.com/EdmondDantes75/indice-feu-outremer</a>.</div></footer>
+<script>
+(async function(){
+const LV=['Faible','Modéré','Élevé','Très élevé'],C=['var(--lv0)','var(--lv1)','var(--lv2)','var(--lv3)'],I=['var(--li0)','var(--li1)','var(--li2)','var(--li3)'];
+const fr=(v,n=1)=>v==null?'–':Number(v).toLocaleString('fr-FR',{minimumFractionDigits:n,maximumFractionDigits:n});
+const [G,D]=await Promise.all([fetch('data/geometry.json').then(r=>r.json()),fetch('data/latest.json',{cache:'no-cache'}).then(r=>r.json())]);
+let j=0,sel=null;const NS='http://www.w3.org/2000/svg',els={},board=document.getElementById('board');
+document.getElementById('upd').textContent='Mise à jour : '+new Date(D.meta.genere).toLocaleString('fr-FR',{dateStyle:'long',timeStyle:'short'});
+G.insets.forEach(ins=>{const c=document.createElement('div');c.className='in';const small=ins.shapes.length+ins.dots.length<=2;c.style.flexBasis=(small?170:Math.round(ins.w*.92))+'px';c.style.maxWidth=(small?250:Math.max(ins.w*1.5,240))+'px';
+ c.innerHTML='<h2><span>'+ins.title+'</span><span class="chip"></span></h2>';const s=document.createElementNS(NS,'svg');s.setAttribute('viewBox','0 0 '+ins.w+' '+ins.h);
+ if(ins.base){const b=document.createElementNS(NS,'path');b.setAttribute('d',ins.base);b.setAttribute('class','base');s.appendChild(b);}
+ const add=(el,i)=>{if(!D.units[i])return;el.setAttribute('class','z');el.dataset.i=i;const t=document.createElementNS(NS,'title');t.textContent=D.units[i].n;el.appendChild(t);s.appendChild(el);(els[i]=els[i]||[]).push(el);};
+ ins.shapes.forEach(z=>{const p=document.createElementNS(NS,'path');p.setAttribute('d',z.d);add(p,z.i);});
+ ins.dots.forEach(z=>{const p=document.createElementNS(NS,'circle');p.setAttribute('cx',z.x);p.setAttribute('cy',z.y);p.setAttribute('r',5.5);add(p,z.i);});
+ c.appendChild(s);board.appendChild(c);ins.el=c;ins.ids=[...ins.shapes.map(z=>z.i),...ins.dots.map(z=>z.i)].filter(i=>D.units[i]);});
+board.onclick=e=>{const t=e.target.closest('[data-i]');if(t){sel=t.dataset.i;paint();}};
+document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{j=+b.dataset.j;document.querySelectorAll('.tabs button').forEach(x=>x.setAttribute('aria-selected',x===b));paint();});
+function paint(){for(const[i,a]of Object.entries(els)){const r=D.units[i].d[j];a.forEach(p=>{p.style.fill=r?C[r[0]]:'#bbb';p.classList.toggle('s',i===sel);});}
+ G.insets.forEach(ins=>{let m=-1;ins.ids.forEach(i=>{const r=D.units[i].d[j];if(r)m=Math.max(m,r[0]);});const ch=ins.el.querySelector('.chip');if(m>=0){ch.textContent=LV[m].toLowerCase();ch.style.background=C[m];ch.style.color=I[m];}});
+ if(!sel)return;const u=D.units[sel],r=u.d[j],st=D.stations[u.s];if(!r){document.getElementById('det').innerHTML='<h3>'+u.n+'</h3><p class="m">Pas de prévision disponible pour cette échéance.</p>';return;}
+ const by=r[2]==='s'?'la station '+(D.stations[r[3]]||{}).n+', sur la commune':'le point de grille de la commune';
+ document.getElementById('det').innerHTML=`<span class="m">${u.t} · ${new Date(r[17]+'T12:00').toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long'})}</span><h3>${u.n}</h3>
+ <div><span class="pill" style="background:${C[r[0]]};color:${I[r[0]]}">${LV[r[0]]}</span> <b style="font-size:1.4rem">${fr(r[1])}</b> <span class="m">IFM</span></div>
+ <p class="m">Niveau donné par ${by}.</p><dl class="kv"><dt>Température à midi</dt><dd>${fr(r[9])} °C</dd><dt>Humidité</dt><dd>${fr(r[10],0)} %</dd><dt>Vent moyen</dt><dd>${fr(r[11],0)} km/h</dd><dt>Pluie 24 h</dt><dd>${fr(r[12])} mm</dd>
+ <dt>FFMC · DMC · DC</dt><dd>${fr(r[4])} · ${fr(r[5])} · ${fr(r[6],0)}</dd><dt>ISI · BUI</dt><dd>${fr(r[7])} · ${fr(r[8])}</dd></dl>
+ <p class="m">Sécheresse : station ${st?st.n:'–'} (${fr(u.sd)} km), dernière observation le ${st?st.last.split('-').reverse().join('/'):'–'}. Météo : ${r[13]}${r[14]!==r[13]?', '+r[14]:''}.</p>`;}
+paint();
+})().catch(e=>{document.getElementById('upd').textContent='Données indisponibles pour le moment.';console.error(e);});
+</script>
+</body>
+</html>

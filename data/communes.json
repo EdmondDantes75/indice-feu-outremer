@@ -1,0 +1,1955 @@
+[
+{
+"insee": "97101",
+"nom": "Les Abymes",
+"territoire": "Guadeloupe",
+"lat": 16.2678,
+"lon": -61.4967,
+"pop": 51055,
+"alt": 28
+},
+{
+"insee": "97102",
+"nom": "Anse-Bertrand",
+"territoire": "Guadeloupe",
+"lat": 16.4668,
+"lon": -61.4698,
+"pop": 4412,
+"alt": 29
+},
+{
+"insee": "97103",
+"nom": "Baie-Mahault",
+"territoire": "Guadeloupe",
+"lat": 16.2498,
+"lon": -61.5951,
+"pop": 30924,
+"alt": 26
+},
+{
+"insee": "97104",
+"nom": "Baillif",
+"territoire": "Guadeloupe",
+"lat": 16.0497,
+"lon": -61.7158,
+"pop": 5096,
+"alt": 364
+},
+{
+"insee": "97105",
+"nom": "Basse-Terre",
+"territoire": "Guadeloupe",
+"lat": 15.9992,
+"lon": -61.7294,
+"pop": 9417,
+"alt": 66
+},
+{
+"insee": "97106",
+"nom": "Bouillante",
+"territoire": "Guadeloupe",
+"lat": 16.1387,
+"lon": -61.7578,
+"pop": 6127,
+"alt": 328
+},
+{
+"insee": "97107",
+"nom": "Capesterre-Belle-Eau",
+"territoire": "Guadeloupe",
+"lat": 16.0486,
+"lon": -61.6197,
+"pop": 17684,
+"alt": 471
+},
+{
+"insee": "97108",
+"nom": "Capesterre-de-Marie-Galante",
+"territoire": "Guadeloupe",
+"lat": 15.9176,
+"lon": -61.2296,
+"pop": 3123,
+"alt": 137
+},
+{
+"insee": "97109",
+"nom": "Gourbeyre",
+"territoire": "Guadeloupe",
+"lat": 16.0057,
+"lon": -61.689,
+"pop": 7307,
+"alt": 262
+},
+{
+"insee": "97110",
+"nom": "La Désirade",
+"territoire": "Guadeloupe",
+"lat": 16.2972,
+"lon": -61.0814,
+"pop": 1306,
+"alt": 24
+},
+{
+"insee": "97111",
+"nom": "Deshaies",
+"territoire": "Guadeloupe",
+"lat": 16.3194,
+"lon": -61.7831,
+"pop": 3710,
+"alt": 130
+},
+{
+"insee": "97112",
+"nom": "Grand-Bourg",
+"territoire": "Guadeloupe",
+"lat": 15.9085,
+"lon": -61.2929,
+"pop": 4617,
+"alt": 79
+},
+{
+"insee": "97113",
+"nom": "Le Gosier",
+"territoire": "Guadeloupe",
+"lat": 16.2274,
+"lon": -61.4749,
+"pop": 27757,
+"alt": 49
+},
+{
+"insee": "97114",
+"nom": "Goyave",
+"territoire": "Guadeloupe",
+"lat": 16.1231,
+"lon": -61.615,
+"pop": 7565,
+"alt": 257
+},
+{
+"insee": "97115",
+"nom": "Lamentin",
+"territoire": "Guadeloupe",
+"lat": 16.2443,
+"lon": -61.6695,
+"pop": 18628,
+"alt": 45
+},
+{
+"insee": "97116",
+"nom": "Morne-à-l'Eau",
+"territoire": "Guadeloupe",
+"lat": 16.3212,
+"lon": -61.4988,
+"pop": 16228,
+"alt": 17
+},
+{
+"insee": "97117",
+"nom": "Le Moule",
+"territoire": "Guadeloupe",
+"lat": 16.3354,
+"lon": -61.36,
+"pop": 23014,
+"alt": 14
+},
+{
+"insee": "97118",
+"nom": "Petit-Bourg",
+"territoire": "Guadeloupe",
+"lat": 16.1695,
+"lon": -61.658,
+"pop": 24665,
+"alt": 185
+},
+{
+"insee": "97119",
+"nom": "Petit-Canal",
+"territoire": "Guadeloupe",
+"lat": 16.3921,
+"lon": -61.4547,
+"pop": 8212,
+"alt": 35
+},
+{
+"insee": "97120",
+"nom": "Pointe-à-Pitre",
+"territoire": "Guadeloupe",
+"lat": 16.2351,
+"lon": -61.5379,
+"pop": 15040,
+"alt": 1
+},
+{
+"insee": "97121",
+"nom": "Pointe-Noire",
+"territoire": "Guadeloupe",
+"lat": 16.227,
+"lon": -61.7651,
+"pop": 5762,
+"alt": 101
+},
+{
+"insee": "97122",
+"nom": "Port-Louis",
+"territoire": "Guadeloupe",
+"lat": 16.4201,
+"lon": -61.488,
+"pop": 5607,
+"alt": 24
+},
+{
+"insee": "97124",
+"nom": "Saint-Claude",
+"territoire": "Guadeloupe",
+"lat": 16.0406,
+"lon": -61.6953,
+"pop": 10177,
+"alt": 588
+},
+{
+"insee": "97125",
+"nom": "Saint-François",
+"territoire": "Guadeloupe",
+"lat": 16.2784,
+"lon": -61.2539,
+"pop": 13942,
+"alt": 27
+},
+{
+"insee": "97126",
+"nom": "Saint-Louis",
+"territoire": "Guadeloupe",
+"lat": 15.9654,
+"lon": -61.2732,
+"pop": 2610,
+"alt": 46
+},
+{
+"insee": "97128",
+"nom": "Sainte-Anne",
+"territoire": "Guadeloupe",
+"lat": 16.2565,
+"lon": -61.3896,
+"pop": 23973,
+"alt": 85
+},
+{
+"insee": "97129",
+"nom": "Sainte-Rose",
+"territoire": "Guadeloupe",
+"lat": 16.2937,
+"lon": -61.6836,
+"pop": 17700,
+"alt": 28
+},
+{
+"insee": "97130",
+"nom": "Terre-de-Bas",
+"territoire": "Guadeloupe",
+"lat": 15.8554,
+"lon": -61.6326,
+"pop": 873,
+"alt": 70
+},
+{
+"insee": "97131",
+"nom": "Terre-de-Haut",
+"territoire": "Guadeloupe",
+"lat": 15.8579,
+"lon": -61.5892,
+"pop": 1463,
+"alt": 2
+},
+{
+"insee": "97132",
+"nom": "Trois-Rivières",
+"territoire": "Guadeloupe",
+"lat": 15.9931,
+"lon": -61.6493,
+"pop": 7415,
+"alt": 504
+},
+{
+"insee": "97133",
+"nom": "Vieux-Fort",
+"territoire": "Guadeloupe",
+"lat": 15.9607,
+"lon": -61.6929,
+"pop": 1674,
+"alt": 13
+},
+{
+"insee": "97134",
+"nom": "Vieux-Habitants",
+"territoire": "Guadeloupe",
+"lat": 16.0847,
+"lon": -61.717,
+"pop": 7077,
+"alt": 418
+},
+{
+"insee": "97201",
+"nom": "L'Ajoupa-Bouillon",
+"territoire": "Martinique",
+"lat": 14.816,
+"lon": -61.1305,
+"pop": 1682,
+"alt": 348
+},
+{
+"insee": "97202",
+"nom": "Les Anses-d'Arlet",
+"territoire": "Martinique",
+"lat": 14.4996,
+"lon": -61.0736,
+"pop": 3912,
+"alt": 135
+},
+{
+"insee": "97203",
+"nom": "Basse-Pointe",
+"territoire": "Martinique",
+"lat": 14.841,
+"lon": -61.1237,
+"pop": 2852,
+"alt": 183
+},
+{
+"insee": "97204",
+"nom": "Le Carbet",
+"territoire": "Martinique",
+"lat": 14.7041,
+"lon": -61.1583,
+"pop": 3721,
+"alt": 261
+},
+{
+"insee": "97205",
+"nom": "Case-Pilote",
+"territoire": "Martinique",
+"lat": 14.6594,
+"lon": -61.1297,
+"pop": 4537,
+"alt": 208
+},
+{
+"insee": "97206",
+"nom": "Le Diamant",
+"territoire": "Martinique",
+"lat": 14.4787,
+"lon": -61.0165,
+"pop": 6161,
+"alt": 29
+},
+{
+"insee": "97207",
+"nom": "Ducos",
+"territoire": "Martinique",
+"lat": 14.5785,
+"lon": -60.9685,
+"pop": 18105,
+"alt": 36
+},
+{
+"insee": "97208",
+"nom": "Fonds-Saint-Denis",
+"territoire": "Martinique",
+"lat": 14.7228,
+"lon": -61.1207,
+"pop": 640,
+"alt": 431
+},
+{
+"insee": "97209",
+"nom": "Fort-de-France",
+"territoire": "Martinique",
+"lat": 14.6492,
+"lon": -61.0686,
+"pop": 75506,
+"alt": 275
+},
+{
+"insee": "97210",
+"nom": "Le François",
+"territoire": "Martinique",
+"lat": 14.6093,
+"lon": -60.8976,
+"pop": 15778,
+"alt": 46
+},
+{
+"insee": "97211",
+"nom": "Grand'Rivière",
+"territoire": "Martinique",
+"lat": 14.847,
+"lon": -61.1836,
+"pop": 487,
+"alt": 359
+},
+{
+"insee": "97212",
+"nom": "Gros-Morne",
+"territoire": "Martinique",
+"lat": 14.7084,
+"lon": -61.0303,
+"pop": 9610,
+"alt": 213
+},
+{
+"insee": "97213",
+"nom": "Le Lamentin",
+"territoire": "Martinique",
+"lat": 14.6231,
+"lon": -60.9923,
+"pop": 39400,
+"alt": 27
+},
+{
+"insee": "97214",
+"nom": "Le Lorrain",
+"territoire": "Martinique",
+"lat": 14.7995,
+"lon": -61.074,
+"pop": 6566,
+"alt": 306
+},
+{
+"insee": "97215",
+"nom": "Macouba",
+"territoire": "Martinique",
+"lat": 14.8474,
+"lon": -61.1465,
+"pop": 987,
+"alt": 307
+},
+{
+"insee": "97216",
+"nom": "Le Marigot",
+"territoire": "Martinique",
+"lat": 14.7795,
+"lon": -61.053,
+"pop": 2948,
+"alt": 295
+},
+{
+"insee": "97217",
+"nom": "Le Marin",
+"territoire": "Martinique",
+"lat": 14.4822,
+"lon": -60.8589,
+"pop": 8486,
+"alt": 76
+},
+{
+"insee": "97218",
+"nom": "Le Morne-Rouge",
+"territoire": "Martinique",
+"lat": 14.7695,
+"lon": -61.1217,
+"pop": 4388,
+"alt": 409
+},
+{
+"insee": "97219",
+"nom": "Le Prêcheur",
+"territoire": "Martinique",
+"lat": 14.8221,
+"lon": -61.1963,
+"pop": 1479,
+"alt": 367
+},
+{
+"insee": "97220",
+"nom": "Rivière-Pilote",
+"territoire": "Martinique",
+"lat": 14.5027,
+"lon": -60.897,
+"pop": 11604,
+"alt": 100
+},
+{
+"insee": "97221",
+"nom": "Rivière-Salée",
+"territoire": "Martinique",
+"lat": 14.5262,
+"lon": -60.9623,
+"pop": 11829,
+"alt": 74
+},
+{
+"insee": "97222",
+"nom": "Le Robert",
+"territoire": "Martinique",
+"lat": 14.6786,
+"lon": -60.9243,
+"pop": 21553,
+"alt": 2
+},
+{
+"insee": "97223",
+"nom": "Saint-Esprit",
+"territoire": "Martinique",
+"lat": 14.5617,
+"lon": -60.9233,
+"pop": 10322,
+"alt": 77
+},
+{
+"insee": "97224",
+"nom": "Saint-Joseph",
+"territoire": "Martinique",
+"lat": 14.6835,
+"lon": -61.0407,
+"pop": 16258,
+"alt": 291
+},
+{
+"insee": "97225",
+"nom": "Saint-Pierre",
+"territoire": "Martinique",
+"lat": 14.7717,
+"lon": -61.1735,
+"pop": 3961,
+"alt": 291
+},
+{
+"insee": "97226",
+"nom": "Sainte-Anne",
+"territoire": "Martinique",
+"lat": 14.4314,
+"lon": -60.8516,
+"pop": 4306,
+"alt": 34
+},
+{
+"insee": "97227",
+"nom": "Sainte-Luce",
+"territoire": "Martinique",
+"lat": 14.4904,
+"lon": -60.9467,
+"pop": 9410,
+"alt": 108
+},
+{
+"insee": "97228",
+"nom": "Sainte-Marie",
+"territoire": "Martinique",
+"lat": 14.773,
+"lon": -61.0084,
+"pop": 14756,
+"alt": 44
+},
+{
+"insee": "97229",
+"nom": "Schœlcher",
+"territoire": "Martinique",
+"lat": 14.6518,
+"lon": -61.1001,
+"pop": 19478,
+"alt": 302
+},
+{
+"insee": "97230",
+"nom": "La Trinité",
+"territoire": "Martinique",
+"lat": 14.7518,
+"lon": -60.9469,
+"pop": 11454,
+"alt": 1
+},
+{
+"insee": "97231",
+"nom": "Les Trois-Îlets",
+"territoire": "Martinique",
+"lat": 14.5329,
+"lon": -61.0376,
+"pop": 6507,
+"alt": 106
+},
+{
+"insee": "97232",
+"nom": "Le Vauclin",
+"territoire": "Martinique",
+"lat": 14.542,
+"lon": -60.8595,
+"pop": 8483,
+"alt": 30
+},
+{
+"insee": "97233",
+"nom": "Le Morne-Vert",
+"territoire": "Martinique",
+"lat": 14.7046,
+"lon": -61.1362,
+"pop": 1718,
+"alt": 554
+},
+{
+"insee": "97234",
+"nom": "Bellefontaine",
+"territoire": "Martinique",
+"lat": 14.6747,
+"lon": -61.146,
+"pop": 1746,
+"alt": 218
+},
+{
+"insee": "97701",
+"nom": "Saint-Barthélemy",
+"territoire": "Saint-Barthélemy",
+"lat": 17.9204,
+"lon": -62.8601,
+"pop": 10660,
+"alt": 13
+},
+{
+"insee": "97801",
+"nom": "Saint-Martin",
+"territoire": "Saint-Martin",
+"lat": 18.0855,
+"lon": -63.062,
+"pop": 31160,
+"alt": 187
+},
+{
+"insee": "97301",
+"nom": "Régina",
+"territoire": "Guyane",
+"lat": 4.0082,
+"lon": -52.4798,
+"pop": 1658,
+"alt": 71
+},
+{
+"insee": "97302",
+"nom": "Cayenne",
+"territoire": "Guyane",
+"lat": 4.9464,
+"lon": -52.3319,
+"pop": 62675,
+"alt": 1
+},
+{
+"insee": "97303",
+"nom": "Iracoubo",
+"territoire": "Guyane",
+"lat": 5.2396,
+"lon": -53.2979,
+"pop": 1662,
+"alt": 84
+},
+{
+"insee": "97304",
+"nom": "Kourou",
+"territoire": "Guyane",
+"lat": 4.9085,
+"lon": -52.7767,
+"pop": 24824,
+"alt": 67
+},
+{
+"insee": "97305",
+"nom": "Macouria",
+"territoire": "Guyane",
+"lat": 4.9925,
+"lon": -52.4835,
+"pop": 19899,
+"alt": 11
+},
+{
+"insee": "97306",
+"nom": "Mana",
+"territoire": "Guyane",
+"lat": 4.9955,
+"lon": -53.6784,
+"pop": 10957,
+"alt": 100
+},
+{
+"insee": "97307",
+"nom": "Matoury",
+"territoire": "Guyane",
+"lat": 4.8281,
+"lon": -52.3498,
+"pop": 36512,
+"alt": 15
+},
+{
+"insee": "97308",
+"nom": "Saint-Georges",
+"territoire": "Guyane",
+"lat": 3.8078,
+"lon": -52.075,
+"pop": 4915,
+"alt": 109
+},
+{
+"insee": "97309",
+"nom": "Remire-Montjoly",
+"territoire": "Guyane",
+"lat": 4.8897,
+"lon": -52.2809,
+"pop": 27723,
+"alt": 19
+},
+{
+"insee": "97310",
+"nom": "Roura",
+"territoire": "Guyane",
+"lat": 4.4685,
+"lon": -52.5164,
+"pop": 3449,
+"alt": 36
+},
+{
+"insee": "97311",
+"nom": "Saint-Laurent-du-Maroni",
+"territoire": "Guyane",
+"lat": 4.9478,
+"lon": -54.0105,
+"pop": 54429,
+"alt": 102
+},
+{
+"insee": "97312",
+"nom": "Sinnamary",
+"territoire": "Guyane",
+"lat": 5.2418,
+"lon": -53.0097,
+"pop": 2756,
+"alt": 42
+},
+{
+"insee": "97313",
+"nom": "Montsinéry-Tonnegrande",
+"territoire": "Guyane",
+"lat": 4.8124,
+"lon": -52.5059,
+"pop": 3626,
+"alt": 52
+},
+{
+"insee": "97314",
+"nom": "Ouanary",
+"territoire": "Guyane",
+"lat": 4.2104,
+"lon": -51.8262,
+"pop": 150,
+"alt": 103
+},
+{
+"insee": "97352",
+"nom": "Saül",
+"territoire": "Guyane",
+"lat": 3.8181,
+"lon": -53.4333,
+"pop": 277,
+"alt": 149
+},
+{
+"insee": "97353",
+"nom": "Maripasoula",
+"territoire": "Guyane",
+"lat": 3.049,
+"lon": -53.8276,
+"pop": 9579,
+"alt": 184
+},
+{
+"insee": "97356",
+"nom": "Camopi",
+"territoire": "Guyane",
+"lat": 2.8679,
+"lon": -52.6916,
+"pop": 2189,
+"alt": 146
+},
+{
+"insee": "97357",
+"nom": "Grand-Santi",
+"territoire": "Guyane",
+"lat": 4.3756,
+"lon": -54.1149,
+"pop": 9668,
+"alt": 112
+},
+{
+"insee": "97358",
+"nom": "Saint-Élie",
+"territoire": "Guyane",
+"lat": 4.4853,
+"lon": -53.1108,
+"pop": 159,
+"alt": 154
+},
+{
+"insee": "97360",
+"nom": "Apatou",
+"territoire": "Guyane",
+"lat": 4.9019,
+"lon": -54.2171,
+"pop": 10306,
+"alt": 103
+},
+{
+"insee": "97361",
+"nom": "Awala-Yalimapo",
+"territoire": "Guyane",
+"lat": 5.6742,
+"lon": -53.9167,
+"pop": 1577,
+"alt": 21
+},
+{
+"insee": "97362",
+"nom": "Papaichton",
+"territoire": "Guyane",
+"lat": 4.0165,
+"lon": -54.0463,
+"pop": 5006,
+"alt": 291
+},
+{
+"insee": "97401",
+"nom": "Les Avirons",
+"territoire": "La Réunion",
+"lat": -21.2019,
+"lon": 55.3629,
+"pop": 11536,
+"alt": 1145
+},
+{
+"insee": "97402",
+"nom": "Bras-Panon",
+"territoire": "La Réunion",
+"lat": -21.0316,
+"lon": 55.6265,
+"pop": 13012,
+"alt": 561
+},
+{
+"insee": "97403",
+"nom": "Entre-Deux",
+"territoire": "La Réunion",
+"lat": -21.2108,
+"lon": 55.4937,
+"pop": 7176,
+"alt": 1103
+},
+{
+"insee": "97404",
+"nom": "L'Étang-Salé",
+"territoire": "La Réunion",
+"lat": -21.2348,
+"lon": 55.358,
+"pop": 14464,
+"alt": 317
+},
+{
+"insee": "97405",
+"nom": "Petite-Île",
+"territoire": "La Réunion",
+"lat": -21.333,
+"lon": 55.5706,
+"pop": 13067,
+"alt": 593
+},
+{
+"insee": "97406",
+"nom": "La Plaine-des-Palmistes",
+"territoire": "La Réunion",
+"lat": -21.153,
+"lon": 55.6442,
+"pop": 6936,
+"alt": 1387
+},
+{
+"insee": "97407",
+"nom": "Le Port",
+"territoire": "La Réunion",
+"lat": -20.9459,
+"lon": 55.3038,
+"pop": 33969,
+"alt": 27
+},
+{
+"insee": "97408",
+"nom": "La Possession",
+"territoire": "La Réunion",
+"lat": -20.9965,
+"lon": 55.3918,
+"pop": 36568,
+"alt": 918
+},
+{
+"insee": "97409",
+"nom": "Saint-André",
+"territoire": "La Réunion",
+"lat": -20.9568,
+"lon": 55.6374,
+"pop": 58885,
+"alt": 135
+},
+{
+"insee": "97410",
+"nom": "Saint-Benoît",
+"territoire": "La Réunion",
+"lat": -21.0887,
+"lon": 55.6313,
+"pop": 38604,
+"alt": 961
+},
+{
+"insee": "97411",
+"nom": "Saint-Denis",
+"territoire": "La Réunion",
+"lat": -20.9434,
+"lon": 55.4444,
+"pop": 155634,
+"alt": 736
+},
+{
+"insee": "97412",
+"nom": "Saint-Joseph",
+"territoire": "La Réunion",
+"lat": -21.2921,
+"lon": 55.644,
+"pop": 39207,
+"alt": 681
+},
+{
+"insee": "97413",
+"nom": "Saint-Leu",
+"territoire": "La Réunion",
+"lat": -21.1816,
+"lon": 55.3432,
+"pop": 36163,
+"alt": 1151
+},
+{
+"insee": "97414",
+"nom": "Saint-Louis",
+"territoire": "La Réunion",
+"lat": -21.2254,
+"lon": 55.4224,
+"pop": 54941,
+"alt": 477
+},
+{
+"insee": "97415",
+"nom": "Saint-Paul",
+"territoire": "La Réunion",
+"lat": -21.0366,
+"lon": 55.3402,
+"pop": 108088,
+"alt": 1204
+},
+{
+"insee": "97416",
+"nom": "Saint-Pierre",
+"territoire": "La Réunion",
+"lat": -21.309,
+"lon": 55.5044,
+"pop": 85038,
+"alt": 291
+},
+{
+"insee": "97417",
+"nom": "Saint-Philippe",
+"territoire": "La Réunion",
+"lat": -21.3084,
+"lon": 55.7436,
+"pop": 5082,
+"alt": 988
+},
+{
+"insee": "97418",
+"nom": "Sainte-Marie",
+"territoire": "La Réunion",
+"lat": -20.9463,
+"lon": 55.5234,
+"pop": 37093,
+"alt": 502
+},
+{
+"insee": "97419",
+"nom": "Sainte-Rose",
+"territoire": "La Réunion",
+"lat": -21.1778,
+"lon": 55.7418,
+"pop": 6557,
+"alt": 1136
+},
+{
+"insee": "97420",
+"nom": "Sainte-Suzanne",
+"territoire": "La Réunion",
+"lat": -20.9507,
+"lon": 55.5936,
+"pop": 25551,
+"alt": 189
+},
+{
+"insee": "97421",
+"nom": "Salazie",
+"territoire": "La Réunion",
+"lat": -21.0524,
+"lon": 55.5145,
+"pop": 7268,
+"alt": 1216
+},
+{
+"insee": "97422",
+"nom": "Le Tampon",
+"territoire": "La Réunion",
+"lat": -21.225,
+"lon": 55.5701,
+"pop": 82579,
+"alt": 1287
+},
+{
+"insee": "97423",
+"nom": "Les Trois-Bassins",
+"territoire": "La Réunion",
+"lat": -21.1138,
+"lon": 55.3378,
+"pop": 7221,
+"alt": 1532
+},
+{
+"insee": "97424",
+"nom": "Cilaos",
+"territoire": "La Réunion",
+"lat": -21.1403,
+"lon": 55.4555,
+"pop": 5040,
+"alt": 1201
+},
+{
+"insee": "97601",
+"nom": "Acoua",
+"territoire": "Mayotte",
+"lat": -12.7249,
+"lon": 45.0678,
+"pop": 5192,
+"alt": 313
+},
+{
+"insee": "97602",
+"nom": "Bandraboua",
+"territoire": "Mayotte",
+"lat": -12.7176,
+"lon": 45.1238,
+"pop": 13989,
+"alt": 240
+},
+{
+"insee": "97603",
+"nom": "Bandrele",
+"territoire": "Mayotte",
+"lat": -12.9392,
+"lon": 45.1797,
+"pop": 10282,
+"alt": 80
+},
+{
+"insee": "97604",
+"nom": "Bouéni",
+"territoire": "Mayotte",
+"lat": -12.9279,
+"lon": 45.1021,
+"pop": 6189,
+"alt": 139
+},
+{
+"insee": "97605",
+"nom": "Chiconi",
+"territoire": "Mayotte",
+"lat": -12.8209,
+"lon": 45.1125,
+"pop": 8295,
+"alt": 264
+},
+{
+"insee": "97606",
+"nom": "Chirongui",
+"territoire": "Mayotte",
+"lat": -12.9179,
+"lon": 45.1428,
+"pop": 8920,
+"alt": 231
+},
+{
+"insee": "97607",
+"nom": "Dembeni",
+"territoire": "Mayotte",
+"lat": -12.853,
+"lon": 45.1805,
+"pop": 15848,
+"alt": 229
+},
+{
+"insee": "97608",
+"nom": "Dzaoudzi",
+"territoire": "Mayotte",
+"lat": -12.7761,
+"lon": 45.2769,
+"pop": 17831,
+"alt": 178
+},
+{
+"insee": "97609",
+"nom": "Kani-Kéli",
+"territoire": "Mayotte",
+"lat": -12.9746,
+"lon": 45.1207,
+"pop": 5507,
+"alt": 189
+},
+{
+"insee": "97610",
+"nom": "Koungou",
+"territoire": "Mayotte",
+"lat": -12.7417,
+"lon": 45.1912,
+"pop": 32156,
+"alt": 194
+},
+{
+"insee": "97611",
+"nom": "Mamoudzou",
+"territoire": "Mayotte",
+"lat": -12.7875,
+"lon": 45.1964,
+"pop": 71437,
+"alt": 281
+},
+{
+"insee": "97612",
+"nom": "Mtsamboro",
+"territoire": "Mayotte",
+"lat": -12.6754,
+"lon": 45.0601,
+"pop": 7705,
+"alt": 78
+},
+{
+"insee": "97613",
+"nom": "M'Tsangamouji",
+"territoire": "Mayotte",
+"lat": -12.755,
+"lon": 45.0845,
+"pop": 6432,
+"alt": 256
+},
+{
+"insee": "97614",
+"nom": "Ouangani",
+"territoire": "Mayotte",
+"lat": -12.8393,
+"lon": 45.1384,
+"pop": 10203,
+"alt": 304
+},
+{
+"insee": "97615",
+"nom": "Pamandzi",
+"territoire": "Mayotte",
+"lat": -12.801,
+"lon": 45.2842,
+"pop": 11442,
+"alt": 105
+},
+{
+"insee": "97616",
+"nom": "Sada",
+"territoire": "Mayotte",
+"lat": -12.8642,
+"lon": 45.1135,
+"pop": 11156,
+"alt": 223
+},
+{
+"insee": "97617",
+"nom": "Tsingoni",
+"territoire": "Mayotte",
+"lat": -12.7824,
+"lon": 45.1334,
+"pop": 13934,
+"alt": 333
+},
+{
+"insee": "98801",
+"nom": "Bélep",
+"territoire": "Nouvelle-Calédonie",
+"lat": -19.73333,
+"lon": 163.66667,
+"pop": 867,
+"alt": 3
+},
+{
+"insee": "98802",
+"nom": "Boulouparis",
+"territoire": "Nouvelle-Calédonie",
+"lat": -21.86667,
+"lon": 166.05,
+"pop": 3359,
+"alt": 9
+},
+{
+"insee": "98803",
+"nom": "Bourail",
+"territoire": "Nouvelle-Calédonie",
+"lat": -21.56667,
+"lon": 165.48333,
+"pop": 5531,
+"alt": 180
+},
+{
+"insee": "98804",
+"nom": "Canala",
+"territoire": "Nouvelle-Calédonie",
+"lat": -21.53333,
+"lon": 165.95,
+"pop": 3701,
+"alt": 57
+},
+{
+"insee": "98805",
+"nom": "Dumbéa",
+"territoire": "Nouvelle-Calédonie",
+"lat": -22.15,
+"lon": 166.45,
+"pop": 35873,
+"alt": 28
+},
+{
+"insee": "98806",
+"nom": "Farino",
+"territoire": "Nouvelle-Calédonie",
+"lat": -21.66667,
+"lon": 165.76667,
+"pop": 712,
+"alt": 186
+},
+{
+"insee": "98807",
+"nom": "Hienghène",
+"territoire": "Nouvelle-Calédonie",
+"lat": -20.68333,
+"lon": 164.93333,
+"pop": 2454,
+"alt": 39
+},
+{
+"insee": "98808",
+"nom": "Houaïlou",
+"territoire": "Nouvelle-Calédonie",
+"lat": -21.28333,
+"lon": 165.61667,
+"pop": 3955,
+"alt": 10
+},
+{
+"insee": "98809",
+"nom": "Île des Pins",
+"territoire": "Nouvelle-Calédonie",
+"lat": -22.66667,
+"lon": 167.48333,
+"pop": 2037,
+"alt": 28
+},
+{
+"insee": "98810",
+"nom": "Kaala-Gomen",
+"territoire": "Nouvelle-Calédonie",
+"lat": -20.66667,
+"lon": 164.4,
+"pop": 1803,
+"alt": 14
+},
+{
+"insee": "98811",
+"nom": "Koné",
+"territoire": "Nouvelle-Calédonie",
+"lat": -21.06667,
+"lon": 164.86667,
+"pop": 8144,
+"alt": 22
+},
+{
+"insee": "98812",
+"nom": "Koumac",
+"territoire": "Nouvelle-Calédonie",
+"lat": -20.56667,
+"lon": 164.28333,
+"pop": 3981,
+"alt": 4
+},
+{
+"insee": "98813",
+"nom": "La Foa",
+"territoire": "Nouvelle-Calédonie",
+"lat": -21.71667,
+"lon": 165.81667,
+"pop": 3552,
+"alt": 13
+},
+{
+"insee": "98814",
+"nom": "Lifou",
+"territoire": "Nouvelle-Calédonie",
+"lat": -20.9,
+"lon": 167.26667,
+"pop": 9195,
+"alt": 2
+},
+{
+"insee": "98815",
+"nom": "Maré",
+"territoire": "Nouvelle-Calédonie",
+"lat": -21.5167,
+"lon": 167.983,
+"pop": 5757,
+"alt": 68
+},
+{
+"insee": "98816",
+"nom": "Moindou",
+"territoire": "Nouvelle-Calédonie",
+"lat": -21.7,
+"lon": 165.68333,
+"pop": 681,
+"alt": 12
+},
+{
+"insee": "98817",
+"nom": "Le Mont-Dore",
+"territoire": "Nouvelle-Calédonie",
+"lat": -22.28333,
+"lon": 166.58333,
+"pop": 27620,
+"alt": 84
+},
+{
+"insee": "98818",
+"nom": "Nouméa",
+"territoire": "Nouvelle-Calédonie",
+"lat": -22.26667,
+"lon": 166.45,
+"pop": 96082,
+"alt": 25
+},
+{
+"insee": "98819",
+"nom": "Ouégoa",
+"territoire": "Nouvelle-Calédonie",
+"lat": -20.35,
+"lon": 164.43333,
+"pop": 2118,
+"alt": 13
+},
+{
+"insee": "98820",
+"nom": "Ouvéa",
+"territoire": "Nouvelle-Calédonie",
+"lat": -20.45,
+"lon": 166.6,
+"pop": 3401,
+"alt": 3
+},
+{
+"insee": "98821",
+"nom": "Païta",
+"territoire": "Nouvelle-Calédonie",
+"lat": -22.13333,
+"lon": 166.36667,
+"pop": 24563,
+"alt": 43
+},
+{
+"insee": "98822",
+"nom": "Poindimié",
+"territoire": "Nouvelle-Calédonie",
+"lat": -20.93333,
+"lon": 165.33333,
+"pop": 5006,
+"alt": 1
+},
+{
+"insee": "98823",
+"nom": "Ponerihouen",
+"territoire": "Nouvelle-Calédonie",
+"lat": -21.08333,
+"lon": 165.4,
+"pop": 2420,
+"alt": 48
+},
+{
+"insee": "98824",
+"nom": "Pouébo",
+"territoire": "Nouvelle-Calédonie",
+"lat": -20.4,
+"lon": 164.56667,
+"pop": 2144,
+"alt": 59
+},
+{
+"insee": "98825",
+"nom": "Pouembout",
+"territoire": "Nouvelle-Calédonie",
+"lat": -21.13333,
+"lon": 164.9,
+"pop": 2752,
+"alt": 15
+},
+{
+"insee": "98826",
+"nom": "Poum",
+"territoire": "Nouvelle-Calédonie",
+"lat": -20.23333,
+"lon": 164.01667,
+"pop": 1435,
+"alt": 0
+},
+{
+"insee": "98827",
+"nom": "Poya",
+"territoire": "Nouvelle-Calédonie",
+"lat": -21.35,
+"lon": 165.15,
+"pop": 2802,
+"alt": 13
+},
+{
+"insee": "98828",
+"nom": "Sarraméa",
+"territoire": "Nouvelle-Calédonie",
+"lat": -21.65,
+"lon": 165.68333,
+"pop": 572,
+"alt": 197
+},
+{
+"insee": "98829",
+"nom": "Thio",
+"territoire": "Nouvelle-Calédonie",
+"lat": -21.61667,
+"lon": 166.21667,
+"pop": 2524,
+"alt": 70
+},
+{
+"insee": "98830",
+"nom": "Touho",
+"territoire": "Nouvelle-Calédonie",
+"lat": -20.78333,
+"lon": 165.23333,
+"pop": 2380,
+"alt": 2
+},
+{
+"insee": "98831",
+"nom": "Voh",
+"territoire": "Nouvelle-Calédonie",
+"lat": -20.96667,
+"lon": 164.7,
+"pop": 2856,
+"alt": 10
+},
+{
+"insee": "98832",
+"nom": "Yaté",
+"territoire": "Nouvelle-Calédonie",
+"lat": -22.16667,
+"lon": 166.95,
+"pop": 1667,
+"alt": 120
+},
+{
+"insee": "98833",
+"nom": "Kouaoua",
+"territoire": "Nouvelle-Calédonie",
+"lat": -21.3968,
+"lon": 165.82876,
+"pop": 1304,
+"alt": 8
+},
+{
+"insee": "98711",
+"nom": "Anaa",
+"territoire": "Polynésie française",
+"lat": -17.43639,
+"lon": -145.48639,
+"pop": 970,
+"alt": 0
+},
+{
+"insee": "98712",
+"nom": "Arue",
+"territoire": "Polynésie française",
+"lat": -17.51528,
+"lon": -149.5025,
+"pop": 10322,
+"alt": 174
+},
+{
+"insee": "98713",
+"nom": "Arutua",
+"territoire": "Polynésie française",
+"lat": -15.31583,
+"lon": -146.86111,
+"pop": 1736,
+"alt": 0
+},
+{
+"insee": "98714",
+"nom": "Bora-Bora",
+"territoire": "Polynésie française",
+"lat": -16.4944,
+"lon": -151.7364,
+"pop": 10758,
+"alt": 25
+},
+{
+"insee": "98715",
+"nom": "Faaa",
+"territoire": "Polynésie française",
+"lat": -17.55,
+"lon": -149.6,
+"pop": 29826,
+"alt": 12
+},
+{
+"insee": "98716",
+"nom": "Fakarava",
+"territoire": "Polynésie française",
+"lat": -16.31472,
+"lon": -145.62639,
+"pop": 1679,
+"alt": 0
+},
+{
+"insee": "98717",
+"nom": "Fangatau",
+"territoire": "Polynésie française",
+"lat": -15.82389,
+"lon": -140.85556,
+"pop": 323,
+"alt": 0
+},
+{
+"insee": "98719",
+"nom": "Gambier",
+"territoire": "Polynésie française",
+"lat": -23.13389,
+"lon": -134.945,
+"pop": 1570,
+"alt": 0
+},
+{
+"insee": "98720",
+"nom": "Hao",
+"territoire": "Polynésie française",
+"lat": -18.25778,
+"lon": -140.87333,
+"pop": 1227,
+"alt": 0
+},
+{
+"insee": "98721",
+"nom": "Hikueru",
+"territoire": "Polynésie française",
+"lat": -17.59278,
+"lon": -142.6025,
+"pop": 199,
+"alt": 0
+},
+{
+"insee": "98722",
+"nom": "Hitiaa O Te Ra",
+"territoire": "Polynésie française",
+"lat": -17.6,
+"lon": -149.3,
+"pop": 10196,
+"alt": 20
+},
+{
+"insee": "98724",
+"nom": "Huahine",
+"territoire": "Polynésie française",
+"lat": -16.75583,
+"lon": -150.98361,
+"pop": 6263,
+"alt": 20
+},
+{
+"insee": "98725",
+"nom": "Mahina",
+"territoire": "Polynésie française",
+"lat": -17.50528,
+"lon": -149.49028,
+"pop": 14623,
+"alt": 3
+},
+{
+"insee": "98726",
+"nom": "Makemo",
+"territoire": "Polynésie française",
+"lat": -16.57417,
+"lon": -143.69833,
+"pop": 1391,
+"alt": 0
+},
+{
+"insee": "98727",
+"nom": "Manihi",
+"territoire": "Polynésie française",
+"lat": -14.39889,
+"lon": -145.95417,
+"pop": 1138,
+"alt": 0
+},
+{
+"insee": "98728",
+"nom": "Maupiti",
+"territoire": "Polynésie française",
+"lat": -16.44194,
+"lon": -152.26861,
+"pop": 1302,
+"alt": 2
+},
+{
+"insee": "98729",
+"nom": "Moorea-Maiao",
+"territoire": "Polynésie française",
+"lat": -17.53028,
+"lon": -149.83806,
+"pop": 18201,
+"alt": 109
+},
+{
+"insee": "98730",
+"nom": "Napuka",
+"territoire": "Polynésie française",
+"lat": -14.16667,
+"lon": -141.23667,
+"pop": 307,
+"alt": 0
+},
+{
+"insee": "98732",
+"nom": "Nukutavake",
+"territoire": "Polynésie française",
+"lat": -19.26889,
+"lon": -138.79361,
+"pop": 287,
+"alt": 0
+},
+{
+"insee": "98733",
+"nom": "Paea",
+"territoire": "Polynésie française",
+"lat": -17.68889,
+"lon": -149.58694,
+"pop": 12756,
+"alt": 111
+},
+{
+"insee": "98734",
+"nom": "Papara",
+"territoire": "Polynésie française",
+"lat": -17.77167,
+"lon": -149.48278,
+"pop": 11743,
+"alt": 2
+},
+{
+"insee": "98735",
+"nom": "Papeete",
+"territoire": "Polynésie française",
+"lat": -17.53972,
+"lon": -149.56889,
+"pop": 26654,
+"alt": 72
+},
+{
+"insee": "98736",
+"nom": "Pirae",
+"territoire": "Polynésie française",
+"lat": -17.52444,
+"lon": -149.52306,
+"pop": 14068,
+"alt": 40
+},
+{
+"insee": "98737",
+"nom": "Pukapuka",
+"territoire": "Polynésie française",
+"lat": -14.8184,
+"lon": -138.8198,
+"pop": 137,
+"alt": 0
+},
+{
+"insee": "98738",
+"nom": "Punaauia",
+"territoire": "Polynésie française",
+"lat": -17.60056,
+"lon": -149.60944,
+"pop": 28781,
+"alt": 124
+},
+{
+"insee": "98739",
+"nom": "Raivavae",
+"territoire": "Polynésie française",
+"lat": -23.87,
+"lon": -147.64917,
+"pop": 900,
+"alt": 79
+},
+{
+"insee": "98740",
+"nom": "Rangiroa",
+"territoire": "Polynésie française",
+"lat": -15.25667,
+"lon": -147.28889,
+"pop": 3761,
+"alt": 0
+},
+{
+"insee": "98741",
+"nom": "Rapa",
+"territoire": "Polynésie française",
+"lat": -27.61833,
+"lon": -144.33556,
+"pop": 451,
+"alt": 0
+},
+{
+"insee": "98742",
+"nom": "Reao",
+"territoire": "Polynésie française",
+"lat": -18.47389,
+"lon": -136.44667,
+"pop": 513,
+"alt": 0
+},
+{
+"insee": "98743",
+"nom": "Rimatara",
+"territoire": "Polynésie française",
+"lat": -22.65139,
+"lon": -152.80444,
+"pop": 893,
+"alt": 0
+},
+{
+"insee": "98744",
+"nom": "Rurutu",
+"territoire": "Polynésie française",
+"lat": -22.45111,
+"lon": -151.34194,
+"pop": 2163,
+"alt": 46
+},
+{
+"insee": "98745",
+"nom": "Tahaa",
+"territoire": "Polynésie française",
+"lat": -16.60722,
+"lon": -151.4875,
+"pop": 5296,
+"alt": 191
+},
+{
+"insee": "98747",
+"nom": "Taiarapu-Est",
+"territoire": "Polynésie française",
+"lat": -17.7317,
+"lon": -149.3034,
+"pop": 13602,
+"alt": 18
+},
+{
+"insee": "98748",
+"nom": "Taiarapu-Ouest",
+"territoire": "Polynésie française",
+"lat": -17.80139,
+"lon": -149.29389,
+"pop": 8371,
+"alt": 1
+},
+{
+"insee": "98749",
+"nom": "Takaroa",
+"territoire": "Polynésie française",
+"lat": -14.45056,
+"lon": -144.9625,
+"pop": 1050,
+"alt": 0
+},
+{
+"insee": "98750",
+"nom": "Taputapuatea",
+"territoire": "Polynésie française",
+"lat": -16.81583,
+"lon": -151.40722,
+"pop": 5007,
+"alt": 78
+},
+{
+"insee": "98751",
+"nom": "Tatakoto",
+"territoire": "Polynésie française",
+"lat": -17.33972,
+"lon": -138.39306,
+"pop": 180,
+"alt": 0
+},
+{
+"insee": "98752",
+"nom": "Teva I Uta",
+"territoire": "Polynésie française",
+"lat": -17.76583,
+"lon": -149.40583,
+"pop": 10837,
+"alt": 0
+},
+{
+"insee": "98753",
+"nom": "Tubuai",
+"territoire": "Polynésie française",
+"lat": -23.37306,
+"lon": -149.47194,
+"pop": 2185,
+"alt": 11
+},
+{
+"insee": "98754",
+"nom": "Tumaraa",
+"territoire": "Polynésie française",
+"lat": -16.85889,
+"lon": -151.47333,
+"pop": 3718,
+"alt": 33
+},
+{
+"insee": "98755",
+"nom": "Tureia",
+"territoire": "Polynésie française",
+"lat": -20.82528,
+"lon": -138.54583,
+"pop": 261,
+"alt": 0
+},
+{
+"insee": "98758",
+"nom": "Uturoa",
+"territoire": "Polynésie française",
+"lat": -16.72389,
+"lon": -151.45056,
+"pop": 3663,
+"alt": 30
+},
+{
+"insee": "98718",
+"nom": "Fatu-Hiva",
+"territoire": "Polynésie française",
+"lat": -10.49111,
+"lon": -138.64722,
+"pop": 600,
+"alt": null
+},
+{
+"insee": "98723",
+"nom": "Hiva-Oa",
+"territoire": "Polynésie française",
+"lat": -9.77528,
+"lon": -139.0175,
+"pop": 2371,
+"alt": null
+},
+{
+"insee": "98731",
+"nom": "Nuku-Hiva",
+"territoire": "Polynésie française",
+"lat": -8.85861,
+"lon": -140.12167,
+"pop": 3025,
+"alt": null
+},
+{
+"insee": "98746",
+"nom": "Tahuata",
+"territoire": "Polynésie française",
+"lat": -9.95167,
+"lon": -139.07778,
+"pop": 595,
+"alt": null
+},
+{
+"insee": "98756",
+"nom": "Ua-Huka",
+"territoire": "Polynésie française",
+"lat": -8.90944,
+"lon": -139.55,
+"pop": 719,
+"alt": null
+},
+{
+"insee": "98757",
+"nom": "Ua-Pou",
+"territoire": "Polynésie française",
+"lat": -9.39528,
+"lon": -140.06417,
+"pop": 2168,
+"alt": null
+},
+{
+"insee": "98611",
+"nom": "Uvea (Wallis)",
+"territoire": "Wallis-et-Futuna",
+"lat": -13.28,
+"lon": -176.17,
+"pop": 8333,
+"alt": null
+},
+{
+"insee": "98612",
+"nom": "Alo (Futuna)",
+"territoire": "Wallis-et-Futuna",
+"lat": -14.3,
+"lon": -178.1,
+"pop": 1950,
+"alt": null
+},
+{
+"insee": "98613",
+"nom": "Sigave (Futuna)",
+"territoire": "Wallis-et-Futuna",
+"lat": -14.27,
+"lon": -178.17,
+"pop": 1275,
+"alt": null
+},
+{
+"insee": "97502",
+"nom": "Saint-Pierre",
+"territoire": "Saint-Pierre-et-Miquelon",
+"lat": 46.78,
+"lon": -56.18,
+"pop": 5400,
+"alt": null
+},
+{
+"insee": "97501",
+"nom": "Miquelon-Langlade",
+"territoire": "Saint-Pierre-et-Miquelon",
+"lat": 47.1,
+"lon": -56.38,
+"pop": 580,
+"alt": null
+}
+]
