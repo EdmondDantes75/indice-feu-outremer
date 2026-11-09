@@ -33,7 +33,7 @@ Copier le dossier `wordpress/indice-feu-outremer` dans `wp-content/plugins/`, pu
 
 - `[indice_feu_outremer]` : tableau des 11 territoires, aujourd'hui et demain.
 - `[indice_feu_outremer format="compact"]` : liste courte pour la page d'accueil (`jour="1"` pour demain).
-- `[indice_feu_commune insee="98811"]` ou `[indice_feu_commune nom="Koné"]` : trois jours pour une commune.
+- `[indice_feu_commune insee="98811"]` ou `[indice_feu_commune nom="Koné"]` : trois jours pour une commune. Pour les noms portés par plusieurs communes (Saint-Pierre, Sainte-Anne, Saint-Louis, Saint-Joseph…), ajouter `territoire="Martinique"` ou utiliser le code INSEE.
 
 ## Sources et licences
 

@@ -122,9 +122,10 @@ add_shortcode( 'indice_feu_outremer', function ( $atts ) {
 	return $h . ifo_mention( $d ) . '</div>';
 } );
 
-/* [indice_feu_commune insee="98811"] ou [indice_feu_commune nom="Koné"] */
+/* [indice_feu_commune insee="98811"] ou [indice_feu_commune nom="Koné"]
+   Noms en double (Saint-Pierre, Sainte-Anne, Saint-Louis…) : préciser territoire="Martinique" ou utiliser le code INSEE. */
 add_shortcode( 'indice_feu_commune', function ( $atts ) {
-	$a = shortcode_atts( array( 'insee' => '', 'nom' => '' ), $atts );
+	$a = shortcode_atts( array( 'insee' => '', 'nom' => '', 'territoire' => '' ), $atts );
 	$d = ifo_donnees();
 	if ( ! $d ) {
 		return '';
@@ -133,9 +134,11 @@ add_shortcode( 'indice_feu_commune', function ( $atts ) {
 	if ( $a['insee'] && isset( $d['communes'][ $a['insee'] ] ) ) {
 		$c = $d['communes'][ $a['insee'] ];
 	} elseif ( $a['nom'] ) {
-		$cle = remove_accents( mb_strtolower( $a['nom'] ) );
+		$cle  = remove_accents( mb_strtolower( $a['nom'] ) );
+		$terr = remove_accents( mb_strtolower( $a['territoire'] ) );
 		foreach ( $d['communes'] as $v ) {
-			if ( remove_accents( mb_strtolower( $v[0] ) ) === $cle ) {
+			if ( remove_accents( mb_strtolower( $v[0] ) ) === $cle
+				&& ( '' === $terr || remove_accents( mb_strtolower( $v[1] ) ) === $terr ) ) {
 				$c = $v;
 				break;
 			}
