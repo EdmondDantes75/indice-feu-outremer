@@ -17,7 +17,7 @@
     '.ifo-k{border:1px solid #D8E0D6;border-radius:9px;padding:10px;display:flex;flex-direction:column;gap:6px;min-width:0}' +
     '.ifo-n{font-weight:700;color:#0A2F19}.ifo-r{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;font-size:.9em;color:#58675D}' +
     '.ifo.ifo img{display:block;width:100%;height:auto;margin:0;border-radius:7px;background:#E4ECEE;box-shadow:none}' +
-    '.ifo-k img{aspect-ratio:4/3;object-fit:contain}.ifo-dm{font-size:.85em;color:#58675D;margin-top:auto!important}.ifo-f{font-size:.78em;color:#58675D;margin-top:12px!important}' +
+    '.ifo-k img{aspect-ratio:4/3;object-fit:contain}.ifo-ag{font-size:.75em;color:#58675D;font-style:italic}.ifo-m .ifo-ag{margin-top:4px!important}.ifo-dm{font-size:.85em;color:#58675D;margin-top:auto!important}.ifo-f{font-size:.78em;color:#58675D;margin-top:12px!important}' +
     '.ifo-c{display:flex;flex-wrap:wrap;gap:16px 20px}.ifo-m{flex:1 1 220px;max-width:440px;min-width:0}' +
     '.ifo-i{flex:999 1 300px;min-width:0}.ifo-map{position:relative}.ifo-map svg{position:absolute;inset:0;width:100%;height:100%}' +
     '.ifo-j{display:grid;grid-template-columns:repeat(auto-fit,minmax(92px,1fr));gap:10px;margin:14px 0}' +
@@ -42,6 +42,7 @@
       h += '<div class="ifo-k"><p class="ifo-n">' + e(i.n) + '</p><div class="ifo-r">' + p(i.a) + '<span>' + e(i.d) + '</span></div>' +
         '<img src="' + B + e(i.c) + '" width="300" height="225" loading="lazy" decoding="async" alt="Carte : ' +
         e(i.n) + ', communes colorées selon le niveau du jour">' +
+        (i.g ? '<p class="ifo-ag">Îles agrandies pour rester visibles</p>' : '') +
         '<p class="ifo-dm">Demain : ' + (i.b >= 0 ? sq(i.b) + L[i.b].toLowerCase() : 'n.d.') + '</p></div>';
     });
     return h + '</div><p class="ifo-f">' + M + e(d.maj) + '</p>';
@@ -54,7 +55,8 @@
     if (c.o) o += '<circle cx="' + c.o[0] + '" cy="' + c.o[1] + '" r="' + r.toFixed(1) + '" fill="none" stroke="#13241A" stroke-width="2" vector-effect="non-scaling-stroke"/>';
     var h = '<div class="ifo-c"><div class="ifo-m"><div class="ifo-map"><img src="' + B + e(c.c) + '" width="' + c.w + '" height="' + c.h +
       '" loading="lazy" decoding="async" alt="Carte : ' + e(d.ile) + ', ' + e(d.n) + ' mise en évidence">' +
-      '<svg viewBox="0 0 ' + c.w + ' ' + c.h + '" aria-hidden="true">' + o + '</svg></div></div><div class="ifo-i">' +
+      '<svg viewBox="0 0 ' + c.w + ' ' + c.h + '" aria-hidden="true">' + o + '</svg></div>' +
+      (c.g ? '<p class="ifo-ag">Îles agrandies pour rester visibles</p>' : '') + '</div><div class="ifo-i">' +
       '<p class="ifo-t">' + e(d.n) + '</p><p class="ifo-s">' + e(d.lieu) + ' · Indice feu Outre-mer</p><div class="ifo-j">';
     d.j.forEach(function (x) {
       h += '<div><b>' + e(x.l) + '</b><span>' + e(x.d) + '</span>' + p(x.n) + '<span>IFM ' + e(x.v) + '</span></div>';

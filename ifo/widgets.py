@@ -36,9 +36,11 @@ VILLE_FUSEAU = {'Europe/Paris': 'Paris', 'America/Guadeloupe': 'Guadeloupe', 'Am
                 'Indian/Reunion': 'La Réunion', 'Indian/Mayotte': 'Mayotte', 'Pacific/Noumea': 'Nouméa',
                 'Pacific/Tahiti': 'Tahiti', 'Pacific/Marquesas': 'Marquises', 'Pacific/Gambier': 'Gambier',
                 'Pacific/Wallis': 'Wallis', 'America/Miquelon': 'Saint-Pierre'}
-SOUS_LIEU = {'pfs': 'îles de la Société', 'pfm': 'Marquises', 'pfa': 'Tuamotu, Gambier, Australes',
+AGRANDIES = ('pfo', 'pfe', 'pfu')  # îles agrandies autour de leur position réelle (outils/insets_polynesie.py)
+SOUS_LIEU = {'pfs': 'îles de la Société', 'pfm': 'Marquises', 'pfo': 'Tuamotu ouest', 'pfe': 'Tuamotu est et Gambier', 'pfu': 'Australes',
              'wl': 'Wallis', 'ft': 'Futuna et Alofi'}
-TITRE_ILE = {'pfs': 'Polynésie · Société', 'pfm': 'Polynésie · Marquises', 'pfa': 'Polynésie · archipels',
+TITRE_ILE = {'pfs': 'Polynésie · Société', 'pfm': 'Polynésie · Marquises', 'pfo': 'Polynésie · Tuamotu ouest',
+             'pfe': 'Polynésie · Tuamotu est et Gambier', 'pfu': 'Polynésie · Australes',
              'ft': 'Futuna et Alofi'}
 CALCULS_UTC = ((5, 55), (15, 55))  # fin habituelle des deux calculs quotidiens
 MER, TERRE, BORD = '#E4ECEE', '#D3DAD2', '#FFFFFF'
@@ -229,7 +231,8 @@ def donnees_accueil(insets, full, small):
     for ins in insets:
         iles.append({'n': TITRE_ILE.get(ins['id'], ins['title']), 'd': date_courte(dates[ins['terr']][0]),
                      'a': _max_ile(ins, units, 0), 'b': _max_ile(ins, units, 1),
-                     'c': f'iles/{ins["id"]}.svg', 'r': round(ins['w'] / ins['h'], 3)})
+                     'c': f'iles/{ins["id"]}.svg', 'r': round(ins['w'] / ins['h'], 3),
+                     **({'g': 1} if ins['id'] in AGRANDIES else {})})
     return {'maj': mise_a_jour(small['genere'], 'Europe/Paris'), 'iles': iles}
 
 
@@ -261,6 +264,8 @@ def donnees_commune(insee, u, ins, full, small):
         src.append('Météo : ' + _source(r) + '.')
     # tracé de la commune, posé sur la carte grise de l'île
     trace = {'c': f'iles/fond-{ins["id"]}.svg', 'w': ins['w'], 'h': ins['h']}
+    if ins['id'] in AGRANDIES:
+        trace['g'] = 1
     for z in ins['shapes']:
         if z['i'] == insee:
             cx, cy, taille = _centre(z['d'])
