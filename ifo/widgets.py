@@ -75,7 +75,7 @@ AddCharset UTF-8 .js .json .csv .html .svg
     Header set Cache-Control "public, max-age=604800"
   </FilesMatch>
   <FilesMatch "\\.js$">
-    Header set Cache-Control "public, max-age=86400"
+    Header set Cache-Control "public, max-age=3600"
   </FilesMatch>
   <FilesMatch "\\.svg$">
     Header set Content-Security-Policy "default-src 'none'; style-src 'unsafe-inline'"
