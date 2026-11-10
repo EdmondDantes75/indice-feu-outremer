@@ -12,6 +12,10 @@ on:
         description: "Sonde : vérifier l'accès aux fichiers Météo-France sans publier"
         type: boolean
         default: false
+      depot_seul:
+        description: "Envoi seul : refaire les images à partir des dernières données publiées et les déposer sur le site"
+        type: boolean
+        default: false
 
 concurrency:
   group: indice
@@ -35,9 +39,13 @@ jobs:
       - name: Tests hors réseau
         run: python -m pytest -q tests
       - name: Calcul
+        if: ${{ !inputs.depot_seul }}
         run: python -m ifo.run ${{ inputs.sonde && '--sonde' || '' }}
+      - name: Images à partir des dernières données publiées
+        if: ${{ inputs.depot_seul }}
+        run: python -c "import json; from ifo import widgets; widgets.ecrire(json.load(open('docs/data/latest.json')), json.load(open('docs/data/resume.json')), 'docs')"
       - name: Publication des résultats
-        if: ${{ !inputs.sonde }}
+        if: ${{ !inputs.sonde && !inputs.depot_seul }}
         run: |
           git config user.name "indice-feu-outremer"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -63,6 +71,12 @@ jobs:
             *) echo "SITE_PROTOCOLE doit valoir sftp ou ftps"; exit 1 ;;
           esac
           D="${DOSSIER:-indice-feu-outremer}"
+          if [ "$URL" = "ftp://$HOTE" ]; then
+            echo "Chaîne de certificats présentée par $HOTE :"
+            echo | timeout 20 openssl s_client -starttls ftp -connect "$HOTE:21" -servername "$HOTE" -showcerts 2>/dev/null \
+              | grep -E "^ *[0-9]+ s:|^ *i:|Verify return code" || true
+          fi
+          REGLAGES="$REGLAGES set ssl:ca-file /etc/ssl/certs/ca-certificates.crt;"
           # 1) envoi de tous les fichiers, sans rien supprimer
           # 2) dans commune/ seulement : suppression des images .svg de communes qui n'existent plus ;
           #    tout autre fichier du site reste hors d'atteinte, même si le chemin est mal réglé
