@@ -1,6 +1,6 @@
 /* Indice feu Outre-mer, Météo des Forêts. Widget sans dépendance.
    Usage : <div data-ifo="accueil"></div> ou <div data-ifo="97209"></div>
-           <script src="/indice-feu-outremer/w.js" defer></script> */
+           puis le script /indice-feu-outremer/w.js chargé avec defer (voir accueil.html). */
 (function () {
   var s = document.currentScript, B = (s && s.src ? s.src : '/indice-feu-outremer/w.js').replace(/w\.js(\?.*)?$/, '');
   var L = ['Faible', 'Modéré', 'Élevé', 'Très élevé'], F = ['#5DB346', '#FFE066', '#F59F00', '#C92A2A'],
