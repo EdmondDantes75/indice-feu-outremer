@@ -21,6 +21,7 @@ import re
 import shutil
 from zoneinfo import ZoneInfo
 
+from . import pages_site
 from .config import TERRITOIRES, TZ_COMMUNE
 
 ICI = os.path.dirname(os.path.abspath(__file__))
@@ -42,6 +43,13 @@ SOUS_LIEU = {'pfs': 'îles de la Société', 'pfm': 'Marquises', 'pfo': 'Tuamotu
 TITRE_ILE = {'pfs': 'Polynésie · Société', 'pfm': 'Polynésie · Marquises', 'pfo': 'Polynésie · Tuamotu ouest',
              'pfe': 'Polynésie · Tuamotu est et Gambier', 'pfu': 'Polynésie · Australes',
              'ft': 'Futuna et Alofi'}
+# Numéros d'appel en cas de départ de feu, vérifiés sur sources officielles ou institutionnelles ;
+# Wallis-et-Futuna : non vérifié, aucun numéro affiché.
+URGENCE = {t: '18 ou le 112' for t in ('Guadeloupe', 'Martinique', 'Guyane', 'La Réunion', 'Mayotte', 'Saint-Martin',
+                                       'Saint-Barthélemy', 'Saint-Pierre-et-Miquelon', 'Polynésie française')}
+URGENCE['Nouvelle-Calédonie'] = '18'
+AVEC_ARTICLE = {'Guadeloupe': 'la Guadeloupe', 'Martinique': 'la Martinique', 'Guyane': 'la Guyane',
+                'Nouvelle-Calédonie': 'la Nouvelle-Calédonie', 'Polynésie française': 'la Polynésie française'}
 CALCULS_UTC = ((5, 55), (15, 55))  # fin habituelle des deux calculs quotidiens
 MER, TERRE, BORD, COTE = '#E4ECEE', '#D3DAD2', '#FFFFFF', '#24342A'
 
@@ -50,6 +58,8 @@ AddType image/svg+xml .svg
 AddType application/json .json
 AddType text/javascript .js
 AddType text/csv .csv
+AddDefaultCharset UTF-8
+AddCharset UTF-8 .js .json .csv .html .svg
 <FilesMatch "\\.(php\\d?|phtml|phar|pl|py|cgi|sh)$">
   Require all denied
 </FilesMatch>
@@ -229,15 +239,35 @@ def _max_ile(ins, units, j):
 
 # ------------------------------------------------------------------ données des widgets
 
-def donnees_accueil(insets, full, small):
+def donnees_accueil(insets, full, small, pages):
     units, dates = full['units'], small['dates']
     iles = []
     for ins in insets:
-        iles.append({'n': TITRE_ILE.get(ins['id'], ins['title']), 'd': date_courte(dates[ins['terr']][0]),
-                     'a': _max_ile(ins, units, 0), 'b': _max_ile(ins, units, 1),
-                     'c': f'iles/{ins["id"]}.svg', 'r': round(ins['w'] / ins['h'], 3),
-                     **({'g': 1} if ins['id'] in AGRANDIES else {})})
-    return {'maj': mise_a_jour(small['genere'], 'Europe/Paris'), 'iles': iles}
+        ids = [z['i'] for z in ins['shapes'] + ins['dots'] if units.get(z['i']) and units[z['i']]['d'] and units[z['i']]['d'][0]]
+        expo = max(ids, key=lambda i: units[i]['d'][0][1] or 0) if ids else None
+        ile = {'n': TITRE_ILE.get(ins['id'], ins['title']), 'd': date_courte(dates[ins['terr']][0]),
+               'a': _max_ile(ins, units, 0), 'b': _max_ile(ins, units, 1),
+               'c': f'iles/{ins["id"]}.svg', 'r': round(ins['w'] / ins['h'], 3)}
+        if ins['id'] in AGRANDIES:
+            ile['g'] = 1
+        if pages['terr'].get(ins['terr']):
+            ile['l'] = pages['terr'][ins['terr']]
+        if expo and units[expo]['d'][0][0] >= 1:
+            ile['e'] = [units[expo]['n'], pages['communes'].get(expo, '')]
+        iles.append(ile)
+    return {'gen': small['genere'], 'maj': mise_a_jour(small['genere'], 'Europe/Paris'), 'iles': iles,
+            'me': pages['methode']}
+
+
+def facteur(r):
+    """Composante qui pèse le plus dans le niveau du jour (lecture simplifiée des sous-indices IFM)."""
+    if not r or r[0] < 1:
+        return ''
+    T, H, W, ffmc, bui = r[9], r[10], r[11], r[4], r[8]
+    notes = {'vent soutenu': (W or 0) / 30, "air sec": (60 - (H or 60)) / 30,
+             'végétation fine très sèche': ((ffmc or 0) - 85) / 7, 'sécheresse du sol': (bui or 0) / 60}
+    nom, note = max(notes.items(), key=lambda x: x[1])
+    return nom if note >= 0.8 else ''
 
 
 def _source(r):
@@ -245,7 +275,7 @@ def _source(r):
     return f'prévision Météo-France {m}' + (', pluie de la veille mesurée' if r[14] == 'pluie mesurée' else '')
 
 
-def donnees_commune(insee, u, ins, full, small):
+def donnees_commune(insee, u, ins, full, small, pages):
     stations, dates, terr = full['stations'], small['dates'], u['t']
     tz = TZ_COMMUNE.get(insee, TERRITOIRES[terr]['tz'])
     jours = []
@@ -280,13 +310,28 @@ def donnees_commune(insee, u, ins, full, small):
         if z['i'] == insee and 'p' not in trace:
             trace['o'] = [z['x'], z['y']]
             trace['k'] = [z['x'], z['y']]
-    return {'n': u['n'], 'lieu': f"{terr} · {SOUS_LIEU[ins['id']]}" if ins['id'] in SOUS_LIEU else terr,
-            'ile': TITRE_ILE.get(ins['id'], ins['title']), 'carte': trace,
-            'j': jours, 'm': cond, 's': src, 'maj': mise_a_jour(small['genere'], tz)}
+    d = {'n': u['n'], 'lieu': f"{terr} · {SOUS_LIEU[ins['id']]}" if ins['id'] in SOUS_LIEU else terr,
+         'ile': TITRE_ILE.get(ins['id'], ins['title']), 'carte': trace, 't': AVEC_ARTICLE.get(terr, terr),
+         'j': jours, 'm': cond, 's': src, 'f': facteur(r), 'u': URGENCE.get(terr, ''),
+         'gen': small['genere'], 'maj': mise_a_jour(small['genere'], tz), 'me': pages['methode']}
+    if pages['terr'].get(terr):
+        d['lt'] = pages['terr'][terr]
+    return d
 
 
-def code_html(cle, hauteur, script=f'{DOSSIER_SITE}/w.js'):
-    return (f'<div data-ifo="{cle}" style="min-height:{hauteur}px"></div>'
+# Hauteurs mesurées du widget (largeur d'écran -> hauteur), légèrement en dessous des plus courtes :
+# commune 480 px sur ordinateur, 700 px vers 600 px de large, 960 à 1 180 px sur téléphone ;
+# accueil 1 090 à 1 320 px sur ordinateur, 1 830 px vers 600 px, 2 380 à 2 490 px sur téléphone.
+RESERVE = ('<style>.ifo-res{min-height:470px}.ifo-res.ifo-res-a{min-height:1080px}'
+           '@media (max-width:700px){.ifo-res{min-height:700px}.ifo-res.ifo-res-a{min-height:1800px}}'
+           '@media (max-width:560px){.ifo-res{min-height:950px}.ifo-res.ifo-res-a{min-height:2350px}}</style>')
+
+
+def code_html(cle, script=f'{DOSSIER_SITE}/w.js'):
+    """Bloc à coller : la hauteur réservée suit la largeur d'écran (pas de décalage de la page au chargement)."""
+    cls = 'ifo-res ifo-res-a' if cle == 'accueil' else 'ifo-res'
+    return (f'{RESERVE}<div data-ifo="{cle}" class="{cls}"></div>'
+            f'<noscript><p>Indice feu Outre-mer : activez JavaScript pour l\'afficher.</p></noscript>'
             f'<script src="{script}" defer></script>')
 
 
@@ -295,9 +340,10 @@ def _ecrit_json(path, obj):
         json.dump(obj, f, ensure_ascii=False, separators=(',', ':'))
 
 
-def ecrire(full, small, out_dir, geometrie=GEOMETRIE):
+def ecrire(full, small, out_dir, geometrie=GEOMETRIE, en_ligne=False):
     insets = charge_geometrie(geometrie)
     units = full['units']
+    pages = pages_site.charger(out_dir, units, en_ligne)
     wd = os.path.join(out_dir, 'widgets')
     if os.path.isdir(wd):
         shutil.rmtree(wd)
@@ -309,7 +355,7 @@ def ecrire(full, small, out_dir, geometrie=GEOMETRIE):
             f.write(_svg_carte(ins, lambda i: FOND[_niveau(units, i, 0)] if _niveau(units, i, 0) >= 0 else '#B9C2BA'))
         with open(os.path.join(wd, 'iles', f'fond-{ins["id"]}.svg'), 'w', encoding='utf-8') as f:
             f.write(_svg_carte(ins, lambda i: TERRE))
-    _ecrit_json(os.path.join(wd, 'accueil.json'), donnees_accueil(insets, full, small))
+    _ecrit_json(os.path.join(wd, 'accueil.json'), donnees_accueil(insets, full, small, pages))
 
     ile = {}
     for ins in insets:
@@ -322,14 +368,14 @@ def ecrire(full, small, out_dir, geometrie=GEOMETRIE):
     for insee, u in sorted(units.items()):
         if insee not in ile:
             continue
-        _ecrit_json(os.path.join(wd, 'c', f'{insee}.json'), donnees_commune(insee, u, ile[insee], full, small))
-        rows.append((insee, u['n'], u['t'], code_html(insee, 520)))
+        _ecrit_json(os.path.join(wd, 'c', f'{insee}.json'), donnees_commune(insee, u, ile[insee], full, small, pages))
+        rows.append((insee, u['n'], u['t'], code_html(insee)))
     with open(os.path.join(wd, 'communes.csv'), 'w', encoding='utf-8', newline='') as f:
         wr = csv.writer(f, delimiter=';')
         wr.writerow(('code_insee', 'commune', 'territoire', 'code_html'))
         wr.writerows(rows)
     with open(os.path.join(wd, 'accueil.html'), 'w', encoding='utf-8') as f:
-        f.write(code_html('accueil', 900) + '\n')
+        f.write(code_html('accueil') + '\n')
     shutil.copy(SCRIPT, os.path.join(wd, 'w.js'))
     with open(os.path.join(wd, '.htaccess'), 'w', encoding='utf-8') as f:
         f.write(HTACCESS)

@@ -277,7 +277,7 @@ def main(argv=None):
     os.makedirs(arch, exist_ok=True)
     with open(os.path.join(arch, now.strftime('%d-%Hh') + '.json'), 'w') as f:
         json.dump(small, f, ensure_ascii=False, separators=(',', ':'))
-    widgets.ecrire(full, small, os.path.dirname(OUT))
+    widgets.ecrire(full, small, os.path.dirname(OUT), en_ligne=True)
     LOG.info('terminé en %.0f s : %d communes, %d stations', time.time() - t0, len(units), len(ST))
 
 

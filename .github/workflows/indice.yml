@@ -43,7 +43,7 @@ jobs:
         run: python -m ifo.run ${{ inputs.sonde && '--sonde' || '' }}
       - name: Images à partir des dernières données publiées
         if: ${{ inputs.depot_seul }}
-        run: python -c "import json; from ifo import widgets; widgets.ecrire(json.load(open('docs/data/latest.json')), json.load(open('docs/data/resume.json')), 'docs')"
+        run: python -c "import json; from ifo import widgets; widgets.ecrire(json.load(open('docs/data/latest.json')), json.load(open('docs/data/resume.json')), 'docs', en_ligne=True)"
       - name: Publication des résultats
         if: ${{ !inputs.sonde && !inputs.depot_seul }}
         run: |
