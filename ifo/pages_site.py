@@ -1,4 +1,9 @@
-"""Pages publiées sur meteodesforets.fr, pour que le widget ne crée que des liens qui fonctionnent.
+"""Pages de meteodesforets.fr vers lesquelles le widget fait des liens : publiées ou prévues.
+
+Pages prévues : data/pages-prevues.json (code INSEE -> adresse définitive des brouillons « Météo des forêts à … »,
+relevée dans WordPress ; adresses sans collision avec les pages existantes, donc inchangées à la publication).
+Les liens sont faits dès maintenant, y compris vers des pages encore en brouillon, ainsi que vers la page de méthode.
+En complément, le plan du site permet de repérer d'autres pages de commune publiées plus tard :
 
 À chaque calcul : lecture du plan du site (page-sitemap.xml de Yoast, une seule requête).
 - page de territoire : /incendie-departement-<territoire>/
@@ -21,6 +26,7 @@ LOG = logging.getLogger(__name__)
 SITE = 'https://www.meteodesforets.fr'
 PLAN = SITE + '/page-sitemap.xml'
 METHODE = '/indice-feu-outre-mer-methode/'
+PREVUES = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'data', 'pages-prevues.json')
 TERR_SLUG = {'Guadeloupe': 'guadeloupe', 'Martinique': 'martinique', 'Guyane': 'guyane', 'La Réunion': 'la-reunion',
              'Mayotte': 'mayotte', 'Saint-Martin': 'saint-martin', 'Saint-Barthélemy': 'saint-barthelemy',
              'Saint-Pierre-et-Miquelon': 'saint-pierre-et-miquelon', 'Nouvelle-Calédonie': 'nouvelle-caledonie',
@@ -72,6 +78,12 @@ def charger(out_dir, units, en_ligne=True):
     os.makedirs(os.path.dirname(chemin), exist_ok=True)
     with open(chemin, 'w', encoding='utf-8') as f:
         json.dump(etat, f, ensure_ascii=False, indent=0)
-    terr = {t: f'/incendie-departement-{s}/' for t, s in TERR_SLUG.items() if f'/incendie-departement-{s}/' in publies}
-    return {'terr': terr, 'communes': {i: c for i, c in communes.items() if c and c in publies},
-            'methode': METHODE if METHODE in publies else ''}
+    try:
+        with open(PREVUES, encoding='utf-8') as f:
+            prevues = json.load(f)
+    except (OSError, ValueError):
+        prevues = {}
+    liens = {i: c for i, c in communes.items() if c and c in publies}
+    liens.update(prevues)
+    terr = {t: f'/incendie-departement-{s}/' for t, s in TERR_SLUG.items()}
+    return {'terr': terr, 'communes': liens, 'methode': METHODE}

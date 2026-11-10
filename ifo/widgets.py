@@ -244,7 +244,11 @@ def donnees_accueil(insets, full, small, pages):
     iles = []
     for ins in insets:
         ids = [z['i'] for z in ins['shapes'] + ins['dots'] if units.get(z['i']) and units[z['i']]['d'] and units[z['i']]['d'][0]]
-        expo = max(ids, key=lambda i: units[i]['d'][0][1] or 0) if ids else None
+        # commune à surveiller : au niveau le plus haut de l'île, de préférence une commune qui a sa page
+        haut = max((units[i]['d'][0][0] for i in ids), default=-1)
+        cands = [i for i in ids if units[i]['d'][0][0] == haut]
+        avec_page = [i for i in cands if pages['communes'].get(i)]
+        expo = max(avec_page or cands, key=lambda i: units[i]['d'][0][1] or 0) if cands else None
         ile = {'n': TITRE_ILE.get(ins['id'], ins['title']), 'd': date_courte(dates[ins['terr']][0]),
                'a': _max_ile(ins, units, 0), 'b': _max_ile(ins, units, 1),
                'c': f'iles/{ins["id"]}.svg', 'r': round(ins['w'] / ins['h'], 3)}

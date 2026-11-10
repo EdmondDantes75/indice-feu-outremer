@@ -64,7 +64,7 @@
         '<img src="' + B + e(i.c) + '" width="300" height="225" loading="lazy" decoding="async" alt="Carte : ' +
         e(i.n) + ', communes colorées selon le niveau du jour">' +
         (i.g ? '<p class="ifo-ag">Îles agrandies pour rester visibles</p>' : '') +
-        (i.e ? '<p class="ifo-x">Plus exposée : ' + a(i.e[1], e(i.e[0])) + '</p>' : '') +
+        (i.e ? '<p class="ifo-x">À surveiller : ' + a(i.e[1], e(i.e[0])) + '</p>' : '') +
         '<p class="ifo-dm">Demain : ' + (i.b >= 0 ? sq(i.b) + L[i.b].toLowerCase() : 'n.d.') + '</p></div>';
     });
     return h + '</div>' + pied(d);
