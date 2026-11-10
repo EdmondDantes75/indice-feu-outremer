@@ -43,7 +43,7 @@ TITRE_ILE = {'pfs': 'Polynésie · Société', 'pfm': 'Polynésie · Marquises',
              'pfe': 'Polynésie · Tuamotu est et Gambier', 'pfu': 'Polynésie · Australes',
              'ft': 'Futuna et Alofi'}
 CALCULS_UTC = ((5, 55), (15, 55))  # fin habituelle des deux calculs quotidiens
-MER, TERRE, BORD = '#E4ECEE', '#D3DAD2', '#FFFFFF'
+MER, TERRE, BORD, COTE = '#E4ECEE', '#D3DAD2', '#FFFFFF', '#24342A'
 
 HTACCESS = '''# Indice feu Outre-mer : fichiers statiques uniquement.
 AddType image/svg+xml .svg
@@ -197,19 +197,23 @@ def charge_geometrie(path=GEOMETRIE, tol=0.5):
 
 
 def _svg_carte(ins, remplissage):
-    """Carte de l'île seule, au cadrage de l'encart : aucun texte, redimensionnable sans perte."""
+    """Carte de l'île seule, au cadrage de l'encart : aucun texte, redimensionnable sans perte.
+    Deux passes sur les mêmes formes : un trait sombre épais dessous, dont seule la moitié extérieure
+    reste visible (trait de côte), puis les communes remplies avec un liseré blanc fin (limites communales)."""
     w, h = ins['w'], ins['h']
-    out = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {h}" width="{w}" height="{h}">'
-           f'<rect width="{w}" height="{h}" fill="{MER}"/>'
-           f'<g stroke="{BORD}" stroke-width=".6" stroke-linejoin="round" vector-effect="non-scaling-stroke">']
+    v = ' vector-effect="non-scaling-stroke"'
+    formes = []
     if ins['base']:
-        out.append(f'<path fill="#C9D2CA" stroke="none" d="{ins["base"]}"/>')
+        formes.append(f'<path fill="#C9D2CA" d="{ins["base"]}"{v}/>')
     for z in ins['shapes']:
-        out.append(f'<path fill="{remplissage(z["i"])}" d="{z["d"]}"/>')
+        formes.append(f'<path fill="{remplissage(z["i"])}" d="{z["d"]}"{v}/>')
     for z in ins['dots']:
-        out.append(f'<circle fill="{remplissage(z["i"])}" cx="{z["x"]}" cy="{z["y"]}" r="5"/>')
-    out.append('</g></svg>')
-    return ''.join(out)
+        formes.append(f'<circle fill="{remplissage(z["i"])}" cx="{z["x"]}" cy="{z["y"]}" r="5"{v}/>')
+    return (f'<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 {w} {h}" '
+            f'width="{w}" height="{h}"><defs><g id="f">{"".join(formes)}</g></defs>'
+            f'<rect width="{w}" height="{h}" fill="{MER}"/>'
+            f'<use href="#f" xlink:href="#f" stroke="{COTE}" stroke-width="2.4" stroke-linejoin="round"/>'
+            f'<use href="#f" xlink:href="#f" stroke="{BORD}" stroke-width=".7" stroke-linejoin="round"/></svg>')
 
 
 def _niveau(units, i, j):
