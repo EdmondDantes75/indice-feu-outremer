@@ -72,11 +72,19 @@ jobs:
           esac
           D="${DOSSIER:-indice-feu-outremer}"
           if [ "$URL" = "ftp://$HOTE" ]; then
-            echo "Chaîne de certificats présentée par $HOTE :"
-            echo | timeout 20 openssl s_client -starttls ftp -connect "$HOTE:21" -servername "$HOTE" -showcerts 2>/dev/null \
-              | grep -E "^ *[0-9]+ s:|^ *i:|Verify return code" || true
+            # Le serveur FTP d'o2switch n'envoie que son certificat, sans l'intermédiaire Let's Encrypt :
+            # on récupère cet intermédiaire à l'adresse inscrite dans le certificat (AIA), puis la chaîne
+            # complète est vérifiée jusqu'à la racine du magasin système. Aucune vérification n'est désactivée.
+            echo | timeout 20 openssl s_client -starttls ftp -connect "$HOTE:21" -servername "$HOTE" 2>/dev/null | openssl x509 > /tmp/feuille.pem
+            openssl x509 -in /tmp/feuille.pem -noout -subject -issuer -enddate -ext subjectAltName
+            AIA=$(openssl x509 -in /tmp/feuille.pem -noout -ext authorityInfoAccess | sed -n 's/.*CA Issuers - URI:\(http[^ ]*\).*/\1/p' | head -1)
+            echo "Intermédiaire : $AIA"
+            curl -fsS --max-time 20 "$AIA" -o /tmp/inter.bin
+            openssl x509 -inform DER -in /tmp/inter.bin -out /tmp/inter.pem 2>/dev/null || cp /tmp/inter.bin /tmp/inter.pem
+            openssl verify -CAfile /etc/ssl/certs/ca-certificates.crt -untrusted /tmp/inter.pem /tmp/feuille.pem
+            cat /etc/ssl/certs/ca-certificates.crt /tmp/inter.pem > /tmp/ca-complet.pem
+            REGLAGES="$REGLAGES set ssl:ca-file /tmp/ca-complet.pem;"
           fi
-          REGLAGES="$REGLAGES set ssl:ca-file /etc/ssl/certs/ca-certificates.crt;"
           # 1) envoi de tous les fichiers, sans rien supprimer
           # 2) dans commune/ seulement : suppression des images .svg de communes qui n'existent plus ;
           #    tout autre fichier du site reste hors d'atteinte, même si le chemin est mal réglé
