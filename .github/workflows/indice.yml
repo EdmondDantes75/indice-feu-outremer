@@ -81,6 +81,8 @@ jobs:
             echo "Intermédiaire : $AIA"
             curl -fsS --max-time 20 "$AIA" -o /tmp/inter.bin
             openssl x509 -inform DER -in /tmp/inter.bin -out /tmp/inter.pem 2>/dev/null || cp /tmp/inter.bin /tmp/inter.pem
+            # Génération « Y » de Let's Encrypt : la racine YR, contre-signée par ISRG Root X1 (présente partout)
+            curl -fsS --max-time 20 https://letsencrypt.org/certs/gen-y/root-yr-by-x1.pem >> /tmp/inter.pem
             openssl verify -CAfile /etc/ssl/certs/ca-certificates.crt -untrusted /tmp/inter.pem /tmp/feuille.pem
             cat /etc/ssl/certs/ca-certificates.crt /tmp/inter.pem > /tmp/ca-complet.pem
             REGLAGES="$REGLAGES set ssl:ca-file /tmp/ca-complet.pem;"
