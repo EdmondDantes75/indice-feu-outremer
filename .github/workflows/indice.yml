@@ -88,9 +88,9 @@ jobs:
             REGLAGES="$REGLAGES set ssl:ca-file /tmp/ca-complet.pem;"
           fi
           # 1) envoi de tous les fichiers, sans rien supprimer
-          # 2) dans commune/ seulement : suppression des images .svg de communes qui n'existent plus ;
+          # 2) dans c/ seulement : suppression des fichiers .json/.svg de communes qui n'existent plus ;
           #    tout autre fichier du site reste hors d'atteinte, même si le chemin est mal réglé
           lftp -u "$UTILISATEUR","$MOT_DE_PASSE" "$URL" -e "$REGLAGES set net:max-retries 3; set net:timeout 30; \
             mirror -R --no-perms --parallel=4 docs/widgets \"$D\"; \
-            mirror -R --no-perms --delete --include-glob '*.svg' docs/widgets/commune \"$D/commune\"; quit"
+            mirror -R --no-perms --delete --include-glob '*.json' --include-glob '*.svg' docs/widgets/c \"$D/c\"; quit"
           echo "Images déposées dans $D"

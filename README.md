@@ -29,24 +29,33 @@ Lancer à la main : onglet **Actions** du dépôt, « Calcul de l'indice », **R
 
 ## Affichage sur le site, sans plugin
 
-Chaque calcul produit des images SVG statiques (aucun script), en deux formats : large pour ordinateur, étroit pour téléphone. Le navigateur choisit le bon format grâce à la balise `<picture>`.
+Un petit script (`w.js`, 2,7 Ko compressé, sans dépendance) construit le widget en HTML dans la page à partir d'un fichier de données. Le texte prend la police du thème et se réorganise selon la largeur de l'emplacement (grilles CSS auto-adaptatives) : quatre colonnes de cartes sur ordinateur, une seule sur téléphone, et le widget commune tient aussi dans une barre latérale. Les cartes sont des images sans texte.
 
-- `accueil.svg` et `accueil-mobile.svg` : carte de chaque île, communes colorées selon le niveau du jour, niveau de l'île aujourd'hui et demain, date locale.
-- `commune/<code INSEE>.svg` et `commune/<code INSEE>-mobile.svg` : carte de l'île avec la commune mise en évidence, trois jours (date, niveau, IFM), conditions prévues à midi (température, humidité, vent, pluie, sécheresse du sol, inflammabilité), station de référence, modèle utilisé, heure du calcul en heure locale.
-- `accueil.html` : code à coller dans un bloc « HTML personnalisé » de la page d'accueil.
-- `communes.csv` : pour chaque commune, son code INSEE et le code HTML prêt à coller.
+Code à coller dans un bloc « HTML personnalisé » :
 
-Les images sont fabriquées à chaque calcul et déposées dans le dossier `indice-feu-outremer` à la racine du site, en SFTP ou FTPS ; elles ne sont pas conservées dans ce dépôt (seules les données le sont). Secrets du dépôt (Settings > Secrets and variables > Actions) :
+```html
+<div data-ifo="accueil" style="min-height:900px"></div><script src="/indice-feu-outremer/w.js" defer></script>
+```
 
-| Secret | Exemple |
-|---|---|
-| `SITE_HOTE` | `ftp.exemple-hebergeur.net` |
-| `SITE_PROTOCOLE` | `sftp` ou `ftps` |
-| `SITE_UTILISATEUR` | compte FTP limité à ce dossier |
-| `SITE_MOT_DE_PASSE` | mot de passe de ce compte |
-| `SITE_DOSSIER` | chemin du dossier vu par ce compte, par exemple `www/indice-feu-outremer` ou `.` |
+```html
+<div data-ifo="97209" style="min-height:520px"></div><script src="/indice-feu-outremer/w.js" defer></script>
+```
 
-Les fichiers sont écrasés à chaque calcul ; l'image d'une commune retirée de la liste est supprimée (seuls les `.svg` du sous-dossier `commune` peuvent l'être, rien d'autre sur le site). Le dossier reçoit aussi un `.htaccess` (Apache) : type `image/svg+xml`, compression, cache de 30 minutes, exécution de scripts refusée.
+Le code INSEE de chaque commune et son code prêt à coller sont dans `communes.csv`. La hauteur minimale réserve la place du widget avant son affichage (pas de décalage de la page).
+
+| Fichier déposé | Rôle | Poids transféré |
+|---|---|---|
+| `w.js` | script du widget | 2,7 Ko |
+| `accueil.json` | îles, niveaux, dates | 0,5 Ko |
+| `c/<insee>.json` | trois jours, conditions, sources, tracé de la commune | 0,5 à 1 Ko |
+| `iles/<id>.svg` | carte colorée de l'île (accueil) | 0,3 à 5 Ko |
+| `iles/fond-<id>.svg` | carte grise de l'île (pages communes, mise en cache 7 jours) | 0,3 à 5 Ko |
+
+Les fichiers sont fabriqués à chaque calcul et déposés dans le dossier `indice-feu-outremer` à la racine du site, en FTPS ; ils ne sont pas conservés dans ce dépôt. Secrets du dépôt (Settings > Secrets and variables > Actions) : `SITE_HOTE` (nom couvert par le certificat du serveur FTP, chez o2switch le nom du serveur, par exemple `sophus.o2switch.net`), `SITE_PROTOCOLE` (`ftps`), `SITE_UTILISATEUR`, `SITE_MOT_DE_PASSE` (compte FTP limité à ce dossier), `SITE_DOSSIER` (`.`).
+
+Le serveur FTP d'o2switch ne transmet pas le certificat intermédiaire Let's Encrypt : le workflow le récupère à l'adresse inscrite dans le certificat et ajoute la racine YR contre-signée par ISRG Root X1 ; la chaîne complète est vérifiée avant tout envoi. Seuls les `.json` et `.svg` du sous-dossier `c` peuvent être supprimés (communes retirées de la liste). Le `.htaccess` du dossier fixe les types, la compression, le cache et interdit l'exécution de scripts serveur.
+
+Pour refaire et déposer les fichiers sans relancer le calcul : onglet Actions, « Calcul de l'indice », Run workflow, case « Envoi seul ».
 
 ## Sources et licences
 
